@@ -15,6 +15,18 @@ export default async function Menu() {
         .map((item) => (
           <MenuCard key={item.id} item={item} />
         ))}
+      <h1>Cold Drinks</h1>
+      {menuItems
+        .filter((item) => item.category === "Cold Drinks")
+        .map((item) => (
+          <MenuCard key={item.id} item={item} />
+        ))}
+      <h1>Pastries</h1>
+      {menuItems
+        .filter((item) => item.category === "Pastries")
+        .map((item) => (
+          <MenuCard key={item.id} item={item} />
+        ))}
     </main>
   );
 }
