@@ -11,4 +11,4 @@ const menuSchema = new Schema<MenuItem>({
   image: { type: String, required: true },
 });
 
-export default mongoose.models.MenuItem || mongoose.model("MenuItem", menuSchema);
+export default mongoose.models.MenuItem || mongoose.model("MenuItem", menuSchema, "menu_items");
