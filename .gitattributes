@@ -1,0 +1,10 @@
+# Normalize line endings for text files
+* text=auto
+
+# Always treat images as binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.ico binary

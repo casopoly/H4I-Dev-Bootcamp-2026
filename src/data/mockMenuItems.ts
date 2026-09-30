@@ -8,8 +8,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "L",
     price: 6.45,
     description: "Smooth matcha blended with milk and served over ice.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/sbx20181127-25128-icedmatchagreentealatte-onwhite-corelib-srgb.png",
+    image: "/images/menu/drinks/iced-matcha-latte-l.jpg",
   },
   {
     id: "item_2",
@@ -18,8 +17,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "L",
     price: 6.45,
     description: "Slow-steeped coffee with a smooth, rich flavor served over ice.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/sbx20181119-21969-coldbrew-onwhite-corelib-srgb.png",
+    image: "/images/menu/drinks/cold-brew-l.jpg",
   },
   {
     id: "item_3",
@@ -28,17 +26,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "L",
     price: 6.45,
     description: "Espresso and milk sweetened with vanilla and served over ice.",
-    image: "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/iced-latte.png",
-  },
-  {
-    id: "item_4",
-    name: "Chocolate Cream Frappuccino",
-    category: "Cold Drinks",
-    size: "L",
-    price: 6.45,
-    description: "Rich chocolate blended with milk and ice for a smooth, creamy treat.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/ChocolateFrap-onWhite_CoreLib_sRGB-scaled.png",
+    image: "/images/menu/drinks/iced-vanilla-latte-l.jpg",
   },
   {
     id: "item_5",
@@ -47,8 +35,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "M",
     price: 5.25,
     description: "Rich espresso topped with steamed milk and a layer of foam.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/sbx20190617-33379-cappuccino-onwhite-corelib-srgb.png",
+    image: "/images/menu/drinks/cappuccino-m.jpg",
   },
   {
     id: "item_6",
@@ -57,8 +44,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "M",
     price: 5.75,
     description: "Espresso and steamed milk blended with rich dark chocolate.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/sbx20190617-33218-caffemocha-onwhite-corelib-g7op.png",
+    image: "/images/menu/drinks/dark-chocolate-mocha-m.jpg",
   },
   {
     id: "item_7",
@@ -67,8 +53,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "M",
     price: 5.75,
     description: "Espresso and steamed milk with a smooth, nutty pistachio flavor.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2026/08/product-beverage-pistachio-flavoured-latte.png",
+    image: "/images/menu/drinks/pistachio-latte-m.jpg",
   },
   {
     id: "item_8",
@@ -77,8 +62,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "M",
     price: 5.75,
     description: "Espresso and steamed milk flavored with warm pumpkin spice.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2026/08/product-beverage-pumpkin-spice-latte.png",
+    image: "/images/menu/drinks/pumpkin-spice-latte-m.jpg",
   },
   {
     id: "item_9",
@@ -87,8 +71,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "S",
     price: 4.95,
     description: "Black tea blended with steamed milk and warm aromatic spices.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/sbx20190624-37821-chailatte-onwhite-corelib-srgb.png",
+    image: "/images/menu/drinks/chai-latte-s.jpg",
   },
   {
     id: "item_10",
@@ -97,8 +80,16 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "S",
     price: 4.95,
     description: "Classic black tea with a bright citrusy bergamot flavor.",
-    image:
-      "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/sbx20190624-38221-royalenglishbreakfastblacktea-onwhite-corelib-srgb.png",
+    image: "/images/menu/drinks/earl-grey-tea-s.jpg",
+  },
+  {
+    id: "item_14",
+    name: "Matcha",
+    category: "Hot Drinks",
+    size: "M",
+    price: 5.25,
+    description: "Stone-ground matcha whisked with hot water for a bright, earthy green tea.",
+    image: "/images/menu/drinks/matcha-m.jpg",
   },
   {
     id: "item_11",
@@ -107,7 +98,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "S",
     price: 4.5,
     description: "Buttery, flaky pastry with a golden crust and soft, airy layers.",
-    image: "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/croissant-butter-shadow.png",
+    image: "/images/menu/pastries/croissant.jpg",
   },
   {
     id: "item_12",
@@ -116,7 +107,7 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "S",
     price: 4.5,
     description: "Soft, chewy cookie packed with rich chocolate chips.",
-    image: "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2025/07/uXxSOR3M-1.png",
+    image: "/images/menu/pastries/chocolate-chip-cookie.jpg",
   },
   {
     id: "item_13",
@@ -125,6 +116,6 @@ export const DUMMY_MENU: MenuItem[] = [
     size: "S",
     price: 4.5,
     description: "Soft, fluffy muffin filled with sweet blueberries.",
-    image: "https://bunny-wp-pullzone-8lgzf5kyx3.b-cdn.net/assets/uploads/2023/08/blueberry-muffin-2-2.png",
+    image: "/images/menu/pastries/blueberry-muffin.jpg",
   },
 ];
