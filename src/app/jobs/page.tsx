@@ -1,10 +1,10 @@
 import Navbar from "../../components/Navbar";
 
-export default function Menu() {
+export default function Jobs() {
   return (
-    <main >
+    <main>
       <Navbar />
-      <h1>Menu</h1>
+      <h1>Jobs</h1>
     </main>
   );
 }

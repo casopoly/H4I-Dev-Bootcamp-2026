@@ -1,10 +1,10 @@
 import Navbar from "../../components/Navbar";
 
-export default function Contact() {
+export default function About() {
   return (
-    <main >
+    <main>
       <Navbar />
-      <h1>Contact</h1>
+      <h1>About</h1>
     </main>
   );
 }
