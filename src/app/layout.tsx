@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+// Self-hosted fonts (bundled with the project, no download from Google at dev time)
+import "@fontsource-variable/inter";
+import "@fontsource-variable/playfair-display";
 import "./globals.css";
 
 //! Update metadata to match your project
