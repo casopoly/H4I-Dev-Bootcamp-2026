@@ -19,6 +19,7 @@ const config: Config = {
           700: "#734a2e",
           800: "#5e3d2a",
           900: "#4e3425",
+          950: "#3a2619",
         },
         // Page background and text colors.
         surface: "#fffaf3",
