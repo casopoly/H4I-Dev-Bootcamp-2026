@@ -51,3 +51,12 @@ When interacting with Git/GitHub, feel free to use the command line, VSCode exte
 4. Link your PR to the corresponding **Issue**
 5. Request a reviewer to check your code
 6. Once approved, your code is ready to be merged in 🎉
+
+## After Your PR Is Merged
+
+Once your PR is merged, clean up so old branches do not pile up. The code is safe in `develop`, and a deleted branch can be restored from the merged PR page if needed.
+
+1. On the merged PR page, click **Delete branch** (skip if GitHub already deleted it automatically)
+2. `git checkout develop` then `git pull` to get your merged changes
+3. `git branch -d <name-of-branch>` to delete your local branch
+4. `git fetch --prune` to remove references to branches that were deleted on GitHub
