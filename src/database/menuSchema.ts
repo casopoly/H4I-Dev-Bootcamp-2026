@@ -1,11 +1,12 @@
 import mongoose, { Schema } from "mongoose";
 import { MenuItem } from "@/types/MenuItem";
+import { MENU_CATEGORIES, MENU_SIZES } from "@/constants/menu";
 
 const menuSchema = new Schema<MenuItem>({
   id: { type: String, required: true, unique: true },
   name: { type: String, required: true },
-  category: { type: String, required: true, enum: ["Cold Drinks", "Hot Drinks", "Pastries"] },
-  size: { type: String, required: true, enum: ["S", "M", "L"] },
+  category: { type: String, required: true, enum: MENU_CATEGORIES },
+  size: { type: String, required: true, enum: MENU_SIZES },
   price: { type: Number, required: true },
   description: { type: String, required: true },
   image: { type: String, required: true },
