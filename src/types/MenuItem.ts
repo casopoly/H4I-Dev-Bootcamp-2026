@@ -1,7 +1,7 @@
 import { MenuCategory, MenuSize } from "@/constants/menu";
 
 export interface MenuItem {
-  id: string;
+  _id: string;
   name: string;
   category: MenuCategory;
   size: MenuSize;
