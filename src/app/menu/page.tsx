@@ -16,7 +16,7 @@ export default async function Menu() {
           {menuItems
             .filter((item) => item.category === category)
             .map((item) => (
-              <MenuCard key={item.id} item={item} />
+              <MenuCard key={item._id} item={item} />
             ))}
         </section>
       ))}

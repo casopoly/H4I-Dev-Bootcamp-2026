@@ -2,8 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import { MenuItem } from "@/types/MenuItem";
 import { MENU_CATEGORIES, MENU_SIZES } from "@/constants/menu";
 
-const menuSchema = new Schema<MenuItem>({
-  id: { type: String, required: true, unique: true },
+const menuSchema = new Schema<Omit<MenuItem, "_id">>({
   name: { type: String, required: true },
   category: { type: String, required: true, enum: MENU_CATEGORIES },
   size: { type: String, required: true, enum: MENU_SIZES },

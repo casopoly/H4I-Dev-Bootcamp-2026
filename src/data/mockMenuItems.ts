@@ -2,7 +2,7 @@ import { MenuItem } from "../types/MenuItem";
 
 export const DUMMY_MENU: MenuItem[] = [
   {
-    id: "item_1",
+    _id: "item_1",
     name: "Iced Matcha Latte",
     category: "Cold Drinks",
     size: "L",
@@ -11,7 +11,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/iced-matcha-latte-l.jpg",
   },
   {
-    id: "item_2",
+    _id: "item_2",
     name: "Cold Brew",
     category: "Cold Drinks",
     size: "L",
@@ -20,7 +20,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/cold-brew-l.jpg",
   },
   {
-    id: "item_3",
+    _id: "item_3",
     name: "Iced Vanilla Latte",
     category: "Cold Drinks",
     size: "L",
@@ -29,7 +29,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/iced-vanilla-latte-l.jpg",
   },
   {
-    id: "item_5",
+    _id: "item_5",
     name: "Cappuccino",
     category: "Hot Drinks",
     size: "M",
@@ -38,7 +38,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/cappuccino-m.jpg",
   },
   {
-    id: "item_6",
+    _id: "item_6",
     name: "Dark Chocolate Mocha",
     category: "Hot Drinks",
     size: "M",
@@ -47,7 +47,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/dark-chocolate-mocha-m.jpg",
   },
   {
-    id: "item_7",
+    _id: "item_7",
     name: "Pistachio Latte",
     category: "Hot Drinks",
     size: "M",
@@ -56,7 +56,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/pistachio-latte-m.jpg",
   },
   {
-    id: "item_8",
+    _id: "item_8",
     name: "Pumpkin Spice Latte",
     category: "Hot Drinks",
     size: "M",
@@ -65,7 +65,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/pumpkin-spice-latte-m.jpg",
   },
   {
-    id: "item_9",
+    _id: "item_9",
     name: "Chai Latte",
     category: "Hot Drinks",
     size: "S",
@@ -74,7 +74,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/chai-latte-s.jpg",
   },
   {
-    id: "item_10",
+    _id: "item_10",
     name: "Earl Grey Tea",
     category: "Hot Drinks",
     size: "S",
@@ -83,7 +83,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/earl-grey-tea-s.jpg",
   },
   {
-    id: "item_14",
+    _id: "item_14",
     name: "Matcha",
     category: "Hot Drinks",
     size: "M",
@@ -92,7 +92,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/drinks/matcha-m.jpg",
   },
   {
-    id: "item_11",
+    _id: "item_11",
     name: "Croissant",
     category: "Pastries",
     size: "S",
@@ -101,7 +101,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/pastries/croissant.jpg",
   },
   {
-    id: "item_12",
+    _id: "item_12",
     name: "Chocolate Chip Cookie",
     category: "Pastries",
     size: "S",
@@ -110,7 +110,7 @@ export const DUMMY_MENU: MenuItem[] = [
     image: "/images/menu/pastries/chocolate-chip-cookie.jpg",
   },
   {
-    id: "item_13",
+    _id: "item_13",
     name: "Blueberry Muffin",
     category: "Pastries",
     size: "S",
