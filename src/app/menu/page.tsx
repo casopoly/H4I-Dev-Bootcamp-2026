@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import { MenuItem } from "@/types/MenuItem";
 import MenuCard from "@/components/MenuItem";
 import { DUMMY_MENU } from "@/data/mockMenuItems";
+import { MENU_CATEGORIES } from "@/constants/menu";
 // import connectDB from "@/database/db";
 
 export default async function Menu() {
@@ -9,24 +10,16 @@ export default async function Menu() {
   return (
     <main>
       <Navbar />
-      <h1>Hot Drinks</h1>
-      {menuItems
-        .filter((item) => item.category === "Hot Drinks")
-        .map((item) => (
-          <MenuCard key={item.id} item={item} />
-        ))}
-      <h1>Cold Drinks</h1>
-      {menuItems
-        .filter((item) => item.category === "Cold Drinks")
-        .map((item) => (
-          <MenuCard key={item.id} item={item} />
-        ))}
-      <h1>Pastries</h1>
-      {menuItems
-        .filter((item) => item.category === "Pastries")
-        .map((item) => (
-          <MenuCard key={item.id} item={item} />
-        ))}
+      {MENU_CATEGORIES.map((category) => (
+        <section key={category}>
+          <h1>{category}</h1>
+          {menuItems
+            .filter((item) => item.category === category)
+            .map((item) => (
+              <MenuCard key={item.id} item={item} />
+            ))}
+        </section>
+      ))}
     </main>
   );
 }
