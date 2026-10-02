@@ -1,5 +1,5 @@
 # Normalize line endings for text files
-* text=auto
+* text=auto eol=lf
 
 # Always treat images as binary
 *.jpg binary
