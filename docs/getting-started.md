@@ -7,6 +7,7 @@ Welcome to the getting started page! Here is all you need to know to get this re
 - [Setup for All Developers](#setup-for-all-developers)
 - [Setup for Tech Leads](#setup-for-tech-leads)
 - [Helpful commands](#helpful-commands)
+- [Troubleshooting](#troubleshooting)
 - [Project Structure](#project-structure)
 
 ## Setup for all Developers
@@ -22,7 +23,8 @@ Welcome to the getting started page! Here is all you need to know to get this re
       <img src="./images/vs-code-settings.png" alt="VSCode Settings 1" width="500"/>
    2. Search "formatter" and set your default formatter to Prettier
    3. Search "format on save" and click the checkbox
-6. Familiarize yourself with [Helpful Commands](#helpful-commands), the [Project Structure](#project-structure), and the [steps for contributing](./contributing.md).
+6. Windows users: set your IDE to use LF line endings. In VS Code, search "eol" in settings and set **Files: Eol** to `\n`. (The repo already forces LF on checkout through `.gitattributes`.)
+7. Familiarize yourself with [Helpful Commands](#helpful-commands), the [Project Structure](#project-structure), and the [steps for contributing](./contributing.md).
 
 ## Setup for Tech Leads
 
@@ -46,6 +48,29 @@ Welcome to the getting started page! Here is all you need to know to get this re
 - `git stash`: Temporarily remove all local changes to a branch and save them. Good when you need to hop to another branch without committing your current code.
 - `git stash apply`: Reapply most recent git stash.
 - `git merge orgin/master`: Pull all changes from the main branch to yours, good for resolving merge conflicts.
+
+## Troubleshooting
+
+### `Delete ␍ prettier/prettier` errors on Windows
+
+If `npm run lint` or `npm run build` shows many errors like "Delete ␍ prettier/prettier", your files have Windows (CRLF) line endings, but our repo uses Unix (LF) line endings. This happens if you cloned or pulled before we added `* text=auto eol=lf` to `.gitattributes`: Git only rewrites the files that changed, so your older files stay CRLF.
+
+Fix (make sure `git status` shows nothing you want to keep, because this discards uncommitted changes):
+
+```
+git pull
+git rm --cached -r .
+git reset --hard
+```
+
+This re-checks out every file with LF endings. Then run `npm run build` again.
+
+Other options:
+
+- Clone the repository again into a new folder.
+- Run `git config core.autocrlf false` and then `npm run lint:fix` to convert the files to LF.
+
+If the errors come back only for files you created yourself, set your editor's End of Line setting to LF (see the setup steps above).
 
 ## Project Structure
 
