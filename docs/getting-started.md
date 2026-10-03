@@ -7,6 +7,7 @@ Welcome to the getting started page! Here is all you need to know to get this re
 - [Setup for All Developers](#setup-for-all-developers)
 - [Setup for Tech Leads](#setup-for-tech-leads)
 - [Helpful commands](#helpful-commands)
+- [Troubleshooting](#troubleshooting)
 - [Project Structure](#project-structure)
 
 ## Setup for all Developers
@@ -46,6 +47,29 @@ Welcome to the getting started page! Here is all you need to know to get this re
 - `git stash`: Temporarily remove all local changes to a branch and save them. Good when you need to hop to another branch without committing your current code.
 - `git stash apply`: Reapply most recent git stash.
 - `git merge orgin/master`: Pull all changes from the main branch to yours, good for resolving merge conflicts.
+
+## Troubleshooting
+
+### `Delete ␍ prettier/prettier` errors on Windows
+
+If `npm run lint` or `npm run build` shows many errors like "Delete ␍ prettier/prettier", your files have Windows (CRLF) line endings, but our repo uses Unix (LF) line endings. This happens if you cloned or pulled before we added `* text=auto eol=lf` to `.gitattributes`: Git only rewrites the files that changed, so your older files stay CRLF. The pre-commit hook only cleans the files you commit, but `npm run build` checks every file in your folder, so those old files still fail the build.
+
+Fix (make sure `git status` shows nothing you want to keep, because this discards uncommitted changes):
+
+```
+git pull
+git rm --cached -r .
+git reset --hard
+```
+
+This re-checks out every file with LF endings. Then run `npm run build` again.
+
+Other options:
+
+- Clone the repository again into a new folder.
+- Run `git config core.autocrlf false` and then `npm run lint:fix` to convert the files to LF.
+
+A message like "CRLF will be replaced by LF the next time Git touches it" when you commit is harmless: Git is converting your line endings to LF for you. The pre-commit hook and format on save also keep new and edited files in LF.
 
 ## Project Structure
 
