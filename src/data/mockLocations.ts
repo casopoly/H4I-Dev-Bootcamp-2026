@@ -9,7 +9,7 @@ export const LOCATIONS: Location[] = [
     zip: "93407",
     phone: "805-111-1111",
     hours: "9am-4pm",
-    image: "/images/location/slo",
+    image: "/images/location/slo.jpg",
   },
   {
     _id: "loc_2",
@@ -19,6 +19,6 @@ export const LOCATIONS: Location[] = [
     zip: "98102",
     phone: "425-111-1111",
     hours: "9am-4pm",
-    image: "/images/location/seattle",
+    image: "/images/location/seattle.jpg",
   },
 ];
