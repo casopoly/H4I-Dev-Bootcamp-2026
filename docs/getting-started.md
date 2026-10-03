@@ -23,8 +23,7 @@ Welcome to the getting started page! Here is all you need to know to get this re
       <img src="./images/vs-code-settings.png" alt="VSCode Settings 1" width="500"/>
    2. Search "formatter" and set your default formatter to Prettier
    3. Search "format on save" and click the checkbox
-6. Windows users: set your IDE to use LF line endings. In VS Code, search "eol" in settings and set **Files: Eol** to `\n`. (The repo already forces LF on checkout through `.gitattributes`.)
-7. Familiarize yourself with [Helpful Commands](#helpful-commands), the [Project Structure](#project-structure), and the [steps for contributing](./contributing.md).
+6. Familiarize yourself with [Helpful Commands](#helpful-commands), the [Project Structure](#project-structure), and the [steps for contributing](./contributing.md).
 
 ## Setup for Tech Leads
 
@@ -53,7 +52,7 @@ Welcome to the getting started page! Here is all you need to know to get this re
 
 ### `Delete ␍ prettier/prettier` errors on Windows
 
-If `npm run lint` or `npm run build` shows many errors like "Delete ␍ prettier/prettier", your files have Windows (CRLF) line endings, but our repo uses Unix (LF) line endings. This happens if you cloned or pulled before we added `* text=auto eol=lf` to `.gitattributes`: Git only rewrites the files that changed, so your older files stay CRLF.
+If `npm run lint` or `npm run build` shows many errors like "Delete ␍ prettier/prettier", your files have Windows (CRLF) line endings, but our repo uses Unix (LF) line endings. This happens if you cloned or pulled before we added `* text=auto eol=lf` to `.gitattributes`: Git only rewrites the files that changed, so your older files stay CRLF. The pre-commit hook only cleans the files you commit, but `npm run build` checks every file in your folder, so those old files still fail the build.
 
 Fix (make sure `git status` shows nothing you want to keep, because this discards uncommitted changes):
 
@@ -70,7 +69,7 @@ Other options:
 - Clone the repository again into a new folder.
 - Run `git config core.autocrlf false` and then `npm run lint:fix` to convert the files to LF.
 
-If the errors come back only for files you created yourself, set your editor's End of Line setting to LF (see the setup steps above).
+A message like "CRLF will be replaced by LF the next time Git touches it" when you commit is harmless: Git is converting your line endings to LF for you. The pre-commit hook and format on save also keep new and edited files in LF.
 
 ## Project Structure
 
