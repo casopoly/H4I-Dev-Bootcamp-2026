@@ -10,12 +10,13 @@ export const dynamic = "force-dynamic";
 type Params = { params: { id: string } };
 
 /**
- * Returns the menu item with the given _id, or 404 if there isn't one
+ * Returns the menu item with the given _id
+ * Returns 404 if there isn't one, and 400 if the id is invalid
  */
 export async function GET(_request: NextRequest, { params }: Params) {
   // A string that isn't a valid ObjectId can't match any item, and findById would throw on it
   if (!isValidObjectId(params.id)) {
-    return NextResponse.json({ error: "Menu item not found" }, { status: 404 });
+    return NextResponse.json({ error: "Menu item id not valid" }, { status: 400 });
   }
 
   try {
@@ -33,11 +34,11 @@ export async function GET(_request: NextRequest, { params }: Params) {
 
 /**
  * Updates the menu item with the given _id using the fields in the request body,
- * then returns the updated item. Returns 404 if there is no item with that _id
+ * then returns the updated item. Returns 404 if there isn't one, and 400 if the id is invalid
  */
 export async function PUT(request: NextRequest, { params }: Params) {
   if (!isValidObjectId(params.id)) {
-    return NextResponse.json({ error: "Menu item not found" }, { status: 404 });
+    return NextResponse.json({ error: "Menu item id not valid" }, { status: 400 });
   }
 
   let updates;
@@ -60,5 +61,28 @@ export async function PUT(request: NextRequest, { params }: Params) {
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Failed to update menu item" }, { status: 500 });
+  }
+}
+
+/**
+ * Deletes the menu item with the given _id
+ * Returns 404 if there isn't one, and 400 if the id is invalid
+ */
+export async function DELETE(_request: NextRequest, { params }: Params) {
+  if (!isValidObjectId(params.id)) {
+    return NextResponse.json({ error: "Menu item id not valid" }, { status: 400 });
+  }
+
+  try {
+    await connectDB();
+    const item = await MenuItem.findByIdAndDelete(params.id);
+    if (!item) {
+      return NextResponse.json({ error: "Menu item not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Menu item deleted successfully" }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Failed to delete menu item" }, { status: 500 });
   }
 }
