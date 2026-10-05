@@ -14,6 +14,9 @@ export default function LocationCard({ item }: { item: Location }) {
       />
       <div>
         <h2 className="text_x1">{item.address}</h2>
+        <p className="text-sm text-brand-800">{item.city}</p>
+        <p className="text-sm text-brand-800">{item.state}</p>
+        <p className="text-sm text-brand-800">{item.zip}</p>
         <p className="text-sm text-brand-800">{item.phone}</p>
         <p className="text-sm text-brand-800">{item.hours}</p>
       </div>
