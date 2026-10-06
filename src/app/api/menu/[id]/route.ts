@@ -1,6 +1,7 @@
 import connectDB from "@/database/db";
 import MenuItem from "@/database/menuSchema";
 import { serializeMenuItem } from "@/database/serializeMenuItem";
+import { validateMenuItem } from "@/lib/validateMenuItem";
 import { isValidObjectId } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -48,17 +49,32 @@ export async function PUT(request: NextRequest, { params }: Params) {
     return NextResponse.json({ error: "Request body must be valid JSON" }, { status: 400 });
   }
 
+  // The body must be an object of fields (not null, an array or a plain value)
+  if (typeof updates !== "object" || updates === null || Array.isArray(updates)) {
+    return NextResponse.json({ error: "Request body must be a JSON object" }, { status: 400 });
+  }
+
+  // Only the fields sent in the body are checked, so a PUT can update just some fields
+  const errors = validateMenuItem(updates, { partial: true });
+  if (Object.keys(errors).length > 0) {
+    return NextResponse.json({ error: Object.values(errors).join(". "), errors }, { status: 400 });
+  }
+
   try {
     // _id is set by MongoDB and can't be changed
     delete updates._id;
     await connectDB();
-    // new: true returns the item after the update instead of before it
-    const item = await MenuItem.findByIdAndUpdate(params.id, updates, { new: true });
+    // new: true returns the item after the update instead of before it; runValidators checks the schema rules too
+    const item = await MenuItem.findByIdAndUpdate(params.id, updates, { new: true, runValidators: true });
     if (!item) {
       return NextResponse.json({ error: "Menu item not found" }, { status: 404 });
     }
     return NextResponse.json(serializeMenuItem(item));
   } catch (error) {
+    // Bad data that got past the checks above (a schema ValidationError or a wrong type) is the client's mistake, not a server error
+    if (error instanceof Error && (error.name === "ValidationError" || error.name === "CastError")) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
     console.error(error);
     return NextResponse.json({ error: "Failed to update menu item" }, { status: 500 });
   }
