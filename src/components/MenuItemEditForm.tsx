@@ -7,11 +7,22 @@ import { MenuItem } from "@/types/MenuItem";
 import { MENU_CATEGORIES, MENU_SIZES, MenuCategory, MenuSize } from "@/constants/menu";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
+import { MenuItemErrors, MenuItemField, validateMenuItem } from "@/lib/validateMenuItem";
 
 // Shared look for every text input, dropdown and textarea in the form
 const fieldClass =
-  "w-full rounded-lg border border-brand-200 bg-white px-3 py-2 text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200";
+  "w-full rounded-lg border border-brand-200 bg-white px-3 py-2 text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 aria-invalid:border-red-500";
 const labelClass = "mb-1 block text-sm font-semibold text-brand-700";
+
+// Error message shown under a field (renders nothing when the field is valid)
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) return null;
+  return (
+    <p id={id} className="mt-1 text-sm text-red-700">
+      {message}
+    </p>
+  );
+}
 
 type Status = { kind: "idle" } | { kind: "saving" } | { kind: "success" } | { kind: "error"; message: string };
 
@@ -29,20 +40,38 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
   const [image, setImage] = useState(item.image);
   const [imageFailed, setImageFailed] = useState(false);
   const [status, setStatus] = useState<Status>({ kind: "idle" });
+  const [errors, setErrors] = useState<MenuItemErrors>({});
+
+  // Remove a field's error message as soon as the user edits that field
+  function clearError(field: MenuItemField) {
+    setErrors((previous) => ({ ...previous, [field]: undefined }));
+  }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     // Stop the browser from reloading the page on submit
     event.preventDefault();
+
+    // Check the fields first, and don't send anything to the server if any of them is invalid
+    const fields = { name, category, size, price: Number(price), description, image };
+    const found = validateMenuItem(fields);
+    setErrors(found);
+    if (Object.keys(found).length > 0) {
+      setStatus({ kind: "error", message: "please fix the highlighted fields" });
+      return;
+    }
+
     setStatus({ kind: "saving" });
 
     try {
       const response = await fetch(`/api/menu/${item._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, category, size, price: Number(price), description, image }),
+        body: JSON.stringify(fields),
       });
       if (!response.ok) {
         const body = await response.json().catch(() => ({}));
+        // The server applies the same rules, so show its field messages too
+        if (body.errors) setErrors(body.errors);
         setStatus({ kind: "error", message: body.error ?? `Request failed (${response.status})` });
         return;
       }
@@ -87,11 +116,15 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
               className={fieldClass}
               value={image}
               placeholder="/images/menu/drinks/latte-m.jpg"
+              aria-invalid={errors.image ? true : undefined}
+              aria-describedby={errors.image ? "image-error" : undefined}
               onChange={(e) => {
                 setImage(e.target.value);
                 setImageFailed(false);
+                clearError("image");
               }}
             />
+            <FieldError id="image-error" message={errors.image} />
           </div>
         </div>
 
@@ -99,7 +132,19 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
           <label htmlFor="name" className={labelClass}>
             Name
           </label>
-          <input id="name" type="text" className={fieldClass} value={name} onChange={(e) => setName(e.target.value)} />
+          <input
+            id="name"
+            type="text"
+            className={fieldClass}
+            value={name}
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? "name-error" : undefined}
+            onChange={(e) => {
+              setName(e.target.value);
+              clearError("name");
+            }}
+          />
+          <FieldError id="name-error" message={errors.name} />
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -111,7 +156,12 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
               id="category"
               className={fieldClass}
               value={category}
-              onChange={(e) => setCategory(e.target.value as MenuCategory)}
+              aria-invalid={errors.category ? true : undefined}
+              aria-describedby={errors.category ? "category-error" : undefined}
+              onChange={(e) => {
+                setCategory(e.target.value as MenuCategory);
+                clearError("category");
+              }}
             >
               {MENU_CATEGORIES.map((c) => (
                 <option key={c} value={c}>
@@ -119,18 +169,30 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
                 </option>
               ))}
             </select>
+            <FieldError id="category-error" message={errors.category} />
           </div>
           <div>
             <label htmlFor="size" className={labelClass}>
               Size
             </label>
-            <select id="size" className={fieldClass} value={size} onChange={(e) => setSize(e.target.value as MenuSize)}>
+            <select
+              id="size"
+              className={fieldClass}
+              value={size}
+              aria-invalid={errors.size ? true : undefined}
+              aria-describedby={errors.size ? "size-error" : undefined}
+              onChange={(e) => {
+                setSize(e.target.value as MenuSize);
+                clearError("size");
+              }}
+            >
               {MENU_SIZES.map((s) => (
                 <option key={s} value={s}>
                   {s}
                 </option>
               ))}
             </select>
+            <FieldError id="size-error" message={errors.size} />
           </div>
           <div>
             <label htmlFor="price" className={labelClass}>
@@ -143,8 +205,14 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
               min="0"
               className={fieldClass}
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              aria-invalid={errors.price ? true : undefined}
+              aria-describedby={errors.price ? "price-error" : undefined}
+              onChange={(e) => {
+                setPrice(e.target.value);
+                clearError("price");
+              }}
             />
+            <FieldError id="price-error" message={errors.price} />
           </div>
         </div>
 
@@ -157,8 +225,14 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
             rows={3}
             className={fieldClass}
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            aria-invalid={errors.description ? true : undefined}
+            aria-describedby={errors.description ? "description-error" : undefined}
+            onChange={(e) => {
+              setDescription(e.target.value);
+              clearError("description");
+            }}
           />
+          <FieldError id="description-error" message={errors.description} />
         </div>
 
         <div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between">
