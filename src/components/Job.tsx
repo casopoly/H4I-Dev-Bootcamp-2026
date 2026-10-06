@@ -1,6 +1,7 @@
 import { Job } from "@/types/Job";
 import { LOCATIONS } from "@/data/mockLocations";
 import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
 
 // Displays one job listing as a two-column table (label, value)
 export default function JobCard({ job }: { job: Job }) {
@@ -29,6 +30,9 @@ export default function JobCard({ job }: { job: Job }) {
           ))}
         </tbody>
       </table>
+      <div className="mt-4 flex justify-end">
+        <Button type="button">Apply</Button>
+      </div>
     </Card>
   );
 }
