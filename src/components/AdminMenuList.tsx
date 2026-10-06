@@ -12,6 +12,8 @@ type Message = { kind: "success" | "error"; text: string };
 export default function AdminMenuList() {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [message, setMessage] = useState<Message | null>(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const cooldownTime = 3000; // milliseconds
 
   const loadItems = useCallback(async () => {
     try {
@@ -34,6 +36,7 @@ export default function AdminMenuList() {
 
   async function handleDelete(item: MenuItem) {
     if (!window.confirm(`Delete ${item.name}?`)) return;
+    setIsDisabled(true);
     setMessage(null);
     try {
       const response = await fetch(`/api/menu/${item._id}`, { method: "DELETE" });
@@ -47,6 +50,10 @@ export default function AdminMenuList() {
     } catch {
       setMessage({ kind: "error", text: "Could not reach the server" });
     }
+
+    setTimeout(() => {
+      setIsDisabled(false);
+    }, cooldownTime);
   }
 
   return (
@@ -78,7 +85,7 @@ export default function AdminMenuList() {
                     <p className="font-semibold text-brand-700">${item.price.toFixed(2)}</p>
                   </div>
                   <div className="flex flex-row gap-4 text-center sm:ml-auto">
-                    <Button variant="dark" onClick={() => handleDelete(item)}>
+                    <Button variant="dark" onClick={() => handleDelete(item)} disabled={isDisabled}>
                       Delete
                     </Button>
                     <Button href={`menu/${item._id}`}>Update</Button>
