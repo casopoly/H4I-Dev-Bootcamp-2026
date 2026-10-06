@@ -11,21 +11,24 @@ export default function MenuBrowser({ items }: { items: MenuItem[] }) {
   return (
     <div>
       <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search the menu" />
-      {MENU_CATEGORIES.map((category) => {
-        const matches = filtered.filter((item) => item.category === category);
-        if (matches.length === 0) return null;
 
-        return (
-          <section key={category} hidden={!matches}>
-            <h1>{category}</h1>
-            {matches.map((item) => (
-              <div key={item.name} hidden={!matches}>
-                <MenuCard item={item} />
-              </div>
-            ))}
-          </section>
-        );
-      })}
+      {filtered.length === 0 ? (
+        <p>No items found.</p>
+      ) : (
+        MENU_CATEGORIES.map((category) => {
+          const matches = filtered.filter((item) => item.category === category);
+          if (matches.length === 0) return null;
+
+          return (
+            <section key={category}>
+              <h1>{category}</h1>
+              {matches.map((item) => (
+                <MenuCard key={item._id} item={item} />
+              ))}
+            </section>
+          );
+        })
+      )}
     </div>
   );
 }
