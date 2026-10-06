@@ -7,6 +7,7 @@ const links = [
   { href: "/menu", label: "Menu" },
   { href: "/jobs", label: "Jobs" },
   { href: "/contact", label: "Contact Us" },
+  { href: "/admin/menu", label: "Admin" },
 ];
 
 // Same look on every page: centered links on a soft translucent white bar.
