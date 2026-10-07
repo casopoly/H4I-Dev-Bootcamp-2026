@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar";
 import { MenuItem } from "@/types/MenuItem";
-import MenuCard from "@/components/MenuItem";
-import { MENU_CATEGORIES } from "@/constants/menu";
 import connectDB from "@/database/db";
 import MenuItemModel from "@/database/menuSchema";
 import { serializeMenuItem } from "@/database/serializeMenuItem";
+import MenuBrowser from "@/components/MenuBrowser";
+import Container from "@/components/ui/Container";
+import PageHeader from "@/components/ui/PageHeader";
 
 export const dynamic = "force-dynamic";
 
@@ -15,16 +16,10 @@ export default async function Menu() {
   return (
     <main>
       <Navbar />
-      {MENU_CATEGORIES.map((category) => (
-        <section key={category}>
-          <h1>{category}</h1>
-          {menuItems
-            .filter((item) => item.category === category)
-            .map((item) => (
-              <MenuCard key={item._id} item={item} />
-            ))}
-        </section>
-      ))}
+      <Container className="pb-16">
+        <PageHeader title="Menu" />
+        <MenuBrowser items={menuItems} />
+      </Container>
     </main>
   );
 }
