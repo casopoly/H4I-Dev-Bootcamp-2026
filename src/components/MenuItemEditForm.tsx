@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MenuItem } from "@/types/MenuItem";
-import { MENU_CATEGORIES, MENU_SIZES, MenuCategory, MenuSize } from "@/constants/menu";
+import { MENU_CATEGORIES, MENU_SIZES, MenuCategory, MenuSize, MenuSizePrice } from "@/constants/menu";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import { MenuItemErrors, MenuItemField, validateMenuItem } from "@/lib/validateMenuItem";
@@ -33,9 +33,12 @@ type Status = { kind: "idle" } | { kind: "saving" } | { kind: "success" } | { ki
 export default function MenuItemEditForm({ item }: { item: MenuItem }) {
   const [name, setName] = useState(item.name);
   const [category, setCategory] = useState<MenuCategory>(item.category);
-  const [size, setSize] = useState<MenuSize>(item.size);
-  // Kept as a string so the input can be empty or half-typed (e.g. "5.") while editing
-  const [price, setPrice] = useState(item.price.toString());
+  // One price input per size, kept as text; a blank input means the item isn't sold in that size
+  const [prices, setPrices] = useState<Record<MenuSize, string>>(() => {
+    const initial: Record<MenuSize, string> = { S: "", M: "", L: "" };
+    for (const { size, price } of item.sizes) initial[size] = String(price);
+    return initial;
+  });
   const [description, setDescription] = useState(item.description);
   const [image, setImage] = useState(item.image);
   const [imageFailed, setImageFailed] = useState(false);
@@ -52,7 +55,12 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
     event.preventDefault();
 
     // Check the fields first, and don't send anything to the server if any of them is invalid
-    const fields = { name, category, size, price: Number(price), description, image };
+    // Only sizes with a price entered are included
+    const sizes: MenuSizePrice[] = MENU_SIZES.filter((s) => prices[s].trim() !== "").map((s) => ({
+      size: s,
+      price: Number(prices[s]),
+    }));
+    const fields = { name, category, sizes, description, image };
     const found = validateMenuItem(fields);
     setErrors(found);
     if (Object.keys(found).length > 0) {
@@ -147,7 +155,7 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
           <FieldError id="name-error" message={errors.name} />
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div>
           <div>
             <label htmlFor="category" className={labelClass}>
               Category
@@ -171,50 +179,35 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
             </select>
             <FieldError id="category-error" message={errors.category} />
           </div>
-          <div>
-            <label htmlFor="size" className={labelClass}>
-              Size
-            </label>
-            <select
-              id="size"
-              className={fieldClass}
-              value={size}
-              aria-invalid={errors.size ? true : undefined}
-              aria-describedby={errors.size ? "size-error" : undefined}
-              onChange={(e) => {
-                setSize(e.target.value as MenuSize);
-                clearError("size");
-              }}
-            >
-              {MENU_SIZES.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
-            <FieldError id="size-error" message={errors.size} />
-          </div>
-          <div>
-            <label htmlFor="price" className={labelClass}>
-              Price ($)
-            </label>
-            <input
-              id="price"
-              type="number"
-              step="0.01"
-              min="0"
-              className={fieldClass}
-              value={price}
-              aria-invalid={errors.price ? true : undefined}
-              aria-describedby={errors.price ? "price-error" : undefined}
-              onChange={(e) => {
-                setPrice(e.target.value);
-                clearError("price");
-              }}
-            />
-            <FieldError id="price-error" message={errors.price} />
-          </div>
         </div>
+
+        <fieldset>
+          <legend className={labelClass}>Prices ($) — leave a size blank to not sell it</legend>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {MENU_SIZES.map((s) => (
+              <div key={s}>
+                <label htmlFor={`price-${s}`} className="mb-1 block text-sm text-brand-700">
+                  {s}
+                </label>
+                <input
+                  id={`price-${s}`}
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  className={fieldClass}
+                  value={prices[s]}
+                  aria-invalid={errors.sizes ? true : undefined}
+                  aria-describedby={errors.sizes ? "sizes-error" : undefined}
+                  onChange={(e) => {
+                    setPrices((previous) => ({ ...previous, [s]: e.target.value }));
+                    clearError("sizes");
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+          <FieldError id="sizes-error" message={errors.sizes} />
+        </fieldset>
 
         <div>
           <label htmlFor="description" className={labelClass}>
