@@ -15,8 +15,8 @@ export default async function Menu() {
   const menuItems: MenuItem[] = docs.map(serializeMenuItem);
   return (
     <main>
-      <Container>
-        <Navbar />
+      <Navbar />
+      <Container className="pb-16">
         <PageHeader title="Menu" />
         <MenuBrowser items={menuItems} />
       </Container>
