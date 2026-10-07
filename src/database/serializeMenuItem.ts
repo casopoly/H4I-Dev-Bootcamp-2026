@@ -11,8 +11,7 @@ export function serializeMenuItem(doc: MenuItemDoc): MenuItem {
     _id: doc._id.toString(),
     name: doc.name,
     category: doc.category,
-    size: doc.size,
-    price: doc.price,
+    sizes: doc.sizes.map((s) => ({ size: s.size, price: s.price })),
     description: doc.description,
     image: doc.image,
   };

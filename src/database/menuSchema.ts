@@ -5,8 +5,12 @@ import { MENU_CATEGORIES, MENU_SIZES } from "@/constants/menu";
 const menuSchema = new Schema<Omit<MenuItem, "_id">>({
   name: { type: String, required: true },
   category: { type: String, required: true, enum: MENU_CATEGORIES },
-  size: { type: String, required: true, enum: MENU_SIZES },
-  price: { type: Number, required: true },
+  sizes: [
+    {
+      size: { type: String, required: true, enum: MENU_SIZES },
+      price: { type: Number, required: true, min: 0 },
+    },
+  ],
   description: { type: String, required: true },
   image: { type: String, required: true },
 });
