@@ -12,6 +12,7 @@ export default async function Menu() {
   await connectDB();
   const docs = await MenuItemModel.find({}).lean<MenuItem[]>();
   const menuItems: MenuItem[] = docs.map(serializeMenuItem);
+
   return (
     <main>
       <Navbar />

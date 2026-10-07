@@ -1,7 +1,7 @@
 import { MENU_CATEGORIES, MENU_SIZES } from "@/constants/menu";
 
 // The fields an admin can edit, and the error message (if any) for each one
-export type MenuItemField = "name" | "category" | "size" | "price" | "description" | "image";
+export type MenuItemField = "name" | "category" | "sizes" | "description" | "image";
 export type MenuItemErrors = Partial<Record<MenuItemField, string>>;
 
 const isNonEmptyString = (value: unknown): value is string => typeof value === "string" && value.trim() !== "";
@@ -13,12 +13,22 @@ const rules: Record<MenuItemField, (value: unknown) => string | undefined> = {
     (MENU_CATEGORIES as readonly unknown[]).includes(value)
       ? undefined
       : `Category must be one of: ${MENU_CATEGORIES.join(", ")}`,
-  size: (value) =>
-    (MENU_SIZES as readonly unknown[]).includes(value) ? undefined : `Size must be one of: ${MENU_SIZES.join(", ")}`,
-  price: (value) =>
-    typeof value === "number" && Number.isFinite(value) && value > 0
+  sizes: (values) =>
+    Array.isArray(values) &&
+    values.length > 0 &&
+    values.every(
+      (v) =>
+        typeof v === "object" &&
+        v !== null &&
+        "size" in v &&
+        "price" in v &&
+        MENU_SIZES.includes(v.size) &&
+        typeof v.price === "number" &&
+        Number.isFinite(v.price) &&
+        v.price >= 0,
+    )
       ? undefined
-      : "Price must be a number greater than 0",
+      : "Enter a valid price (0 or more) for at least one size (S, M, L)",
   description: (value) => (isNonEmptyString(value) ? undefined : "Description is required"),
   image: (value) =>
     typeof value === "string" && value.startsWith("/images/")

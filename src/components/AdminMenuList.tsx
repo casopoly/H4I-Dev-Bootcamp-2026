@@ -81,8 +81,14 @@ export default function AdminMenuList() {
                   />
                   <div>
                     <h2 className="text-xl">{item.name}</h2>
-                    <p className="text-sm text-brand-800">{item.size}</p>
-                    <p className="font-semibold text-brand-700">${item.price.toFixed(2)}</p>
+                    <p className="text-sm text-brand-800">
+                      {item.sizes.map((size) => (
+                        <span key={size.size} className="block">
+                          {size.size}: <strong>${size.price.toFixed(2)}</strong>
+                        </span>
+                      ))}
+                    </p>
+                    <p className="text-sm italic text-brand-800 line-clamp-3">{item.description}</p>
                   </div>
                   <div className="flex flex-row gap-4 text-center sm:ml-auto">
                     <Button variant="dark" onClick={() => handleDelete(item)} disabled={isDisabled}>

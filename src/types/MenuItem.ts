@@ -4,8 +4,7 @@ export interface MenuItem {
   _id: string;
   name: string;
   category: MenuCategory;
-  size: MenuSize;
-  price: number;
+  sizes: { size: MenuSize; price: number }[];
   description: string;
   image: string;
 }
