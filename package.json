@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write .",
-    "test": "echo 'Install jest (or another unit test suite) to use this command.'",
+    "test": "vitest run",
     "prepare": "husky"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "postcss": "^8.5.28",
     "prettier": "^3",
     "tailwindcss": "^3.4.19",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^2.1.9"
   }
 }
