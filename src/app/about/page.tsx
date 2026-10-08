@@ -5,7 +5,7 @@ import Container from "@/components/ui/Container";
 import PageHeader from "@/components/ui/PageHeader";
 import Button from "@/components/ui/Button";
 
-const COFFEE_HOUSE_NAME = "[COFFEE HOUSE NAME]";
+const COFFEE_HOUSE_NAME = "SLO Drip";
 
 export const metadata: Metadata = {
   title: "About Us",
