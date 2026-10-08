@@ -9,6 +9,17 @@ Here are all of the steps you should follow whenever contributing to this repo!
 3. Make changes to the code
 4. `npm run lint` to ensure code standards. (running `npm run lint:fix` will fix most of the styling errors)
 
+## Running Tests
+
+We use [Vitest](https://vitest.dev) for unit tests.
+
+- `npm test` runs every test once and exits (this is also what GitHub runs on each PR)
+- `npx vitest` keeps running and re-runs the tests you changed every time you save
+- Put a test next to the code it checks and name it `<file>.test.ts`, for example `src/lib/adminAuth.test.ts`
+- Import code with the usual `@/` shortcut, for example `import { safeEqual } from "@/lib/adminAuth";`
+- Use `describe`, `it` and `expect` (import them from `"vitest"`). See `src/lib/adminAuth.test.ts` for a small example
+- Tests run without a browser and without the database. To test code that talks to MongoDB, replace the database with `vi.mock`
+
 ## Branch Naming
 
 Name your branch `<type>/<issue-number>-<short-description>`, for example `feat/29-home-hero`.
