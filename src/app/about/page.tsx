@@ -62,13 +62,13 @@ export default function AboutPage() {
         </h2>
       </section>
 
-      <footer className="mt-12">
+      <section className="mt-12">
         <p className="text-2xl font-semibold">Welcome to {COFFEE_HOUSE_NAME}.</p>
         <p className="mt-2 text-lg">We are glad you are here.</p>
         <div className="mt-6">
           <Button href="/menu">View our menu</Button>
         </div>
-      </footer>
+      </section>
     </Container>
   );
 }
