@@ -1,4 +1,10 @@
-import { MESSAGE_MAX_LENGTH, MESSAGE_TYPES } from "@/constants/messages";
+import {
+  EMAIL_MAX_LENGTH,
+  MESSAGE_MAX_LENGTH,
+  MESSAGE_TYPES,
+  NAME_MAX_LENGTH,
+  SUBJECT_MAX_LENGTH,
+} from "@/constants/messages";
 
 // The fields a visitor sends, and the error message (if any) for each one
 export type MessageField = "name" | "email" | "message" | "type" | "subject";
@@ -9,11 +15,19 @@ const isNonEmptyString = (value: unknown): value is string => typeof value === "
 // Something@something.something with no spaces. Loose on purpose: it catches typos without rejecting real addresses
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Each rule returns an error message, or undefined when the value is fine
+// Each rule returns an error message, or undefined when the value is fine.
+// Name, email and subject are saved trimmed, so their limits apply to the trimmed text
 const rules: Record<MessageField, (value: unknown) => string | undefined> = {
-  name: (value) => (isNonEmptyString(value) ? undefined : "Name is required"),
-  email: (value) =>
-    typeof value === "string" && EMAIL_PATTERN.test(value.trim()) ? undefined : "Enter a valid email address",
+  name: (value) => {
+    if (!isNonEmptyString(value)) return "Name is required";
+    if (value.trim().length > NAME_MAX_LENGTH) return `Name must be ${NAME_MAX_LENGTH} characters or fewer`;
+    return undefined;
+  },
+  email: (value) => {
+    if (typeof value !== "string" || !EMAIL_PATTERN.test(value.trim())) return "Enter a valid email address";
+    if (value.trim().length > EMAIL_MAX_LENGTH) return `Email must be ${EMAIL_MAX_LENGTH} characters or fewer`;
+    return undefined;
+  },
   message: (value) => {
     if (!isNonEmptyString(value)) return "Message is required";
     if (value.length > MESSAGE_MAX_LENGTH) return `Message must be ${MESSAGE_MAX_LENGTH} characters or fewer`;
@@ -25,7 +39,12 @@ const rules: Record<MessageField, (value: unknown) => string | undefined> = {
       ? undefined
       : `Type must be one of: ${MESSAGE_TYPES.join(", ")}`,
   // Optional: leave it out, or send a string
-  subject: (value) => (value === undefined || typeof value === "string" ? undefined : "Subject must be text"),
+  subject: (value) => {
+    if (value === undefined) return undefined;
+    if (typeof value !== "string") return "Subject must be text";
+    if (value.trim().length > SUBJECT_MAX_LENGTH) return `Subject must be ${SUBJECT_MAX_LENGTH} characters or fewer`;
+    return undefined;
+  },
 };
 
 /**

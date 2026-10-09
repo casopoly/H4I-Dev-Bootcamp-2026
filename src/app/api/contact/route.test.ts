@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
 import { GET, POST } from "@/app/api/contact/route";
 import MessageModel from "@/database/messageSchema";
+import { EMAIL_MAX_LENGTH, NAME_MAX_LENGTH, SUBJECT_MAX_LENGTH } from "@/constants/messages";
 
 // Replace the database with fakes, so the tests never touch MongoDB
 vi.mock("@/database/db", () => ({ default: vi.fn() }));
@@ -69,6 +70,32 @@ describe("POST /api/contact", () => {
     const response = await post("{ name: ");
 
     expect(response.status).toBe(400);
+    expect(create).not.toHaveBeenCalled();
+  });
+});
+
+describe("POST /api/contact length limits", () => {
+  // A valid value of exactly the given length for each capped field
+  const ofLength = {
+    name: (n: number) => "a".repeat(n),
+    email: (n: number) => "a".repeat(n - "@example.com".length) + "@example.com",
+    subject: (n: number) => "a".repeat(n),
+  };
+
+  it.each([
+    ["name", NAME_MAX_LENGTH],
+    ["email", EMAIL_MAX_LENGTH],
+    ["subject", SUBJECT_MAX_LENGTH],
+  ] as const)("accepts a %s of exactly %i characters and rejects one more", async (field, limit) => {
+    create.mockImplementation((async (fields: Record<string, unknown>) => savedDoc(fields)) as never);
+
+    const atLimit = await post(JSON.stringify({ ...validMessage, [field]: ofLength[field](limit) }));
+    expect(atLimit.status).toBe(201);
+
+    create.mockClear();
+    const overLimit = await post(JSON.stringify({ ...validMessage, [field]: ofLength[field](limit + 1) }));
+    expect(overLimit.status).toBe(400);
+    expect(Object.keys((await overLimit.json()).errors)).toEqual([field]);
     expect(create).not.toHaveBeenCalled();
   });
 });
