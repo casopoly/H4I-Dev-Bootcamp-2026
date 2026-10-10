@@ -16,6 +16,7 @@ import {
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import { MenuItemErrors, MenuItemField, validateMenuItem } from "@/lib/validateMenuItem";
+import { requestJson } from "@/lib/requestJson";
 
 // Shared look for every text input, dropdown and textarea in the form
 const fieldClass =
@@ -87,25 +88,20 @@ export default function MenuItemEditForm({ item }: { item?: MenuItem }) {
 
     setStatus({ kind: "saving" });
 
-    try {
-      const response = await fetch(item ? `/api/menu/${item._id}` : "/api/menu", {
-        method: item ? "PUT" : "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
-      });
-      if (!response.ok) {
-        const body = await response.json().catch(() => ({}));
-        // The server applies the same rules, so show its field messages too
-        if (body.errors) setErrors(body.errors);
-        setStatus({ kind: "error", message: body.error ?? `Request failed (${response.status})` });
-        return;
-      }
-      setStatus({ kind: "success" });
-      // A new item has nothing left to edit here, so show it in the list
-      if (!item) router.push("/admin/menu");
-    } catch {
-      setStatus({ kind: "error", message: "Could not reach the server" });
+    const result = await requestJson(item ? `/api/menu/${item._id}` : "/api/menu", {
+      method: item ? "PUT" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fields),
+    });
+    if (!result.ok) {
+      // The server applies the same rules, so show its field messages too
+      if (result.errors) setErrors(result.errors);
+      setStatus({ kind: "error", message: result.error });
+      return;
     }
+    setStatus({ kind: "success" });
+    // A new item has nothing left to edit here, so show it in the list
+    if (!item) router.push("/admin/menu");
   }
 
   // next/image only accepts paths that start with "/", so anything else gets the placeholder

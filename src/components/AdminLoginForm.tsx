@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
+import { requestJson } from "@/lib/requestJson";
 
 /**
  * Asks for the admin password and sends it to POST /api/admin/login.
@@ -18,25 +19,19 @@ export default function AdminLoginForm({ next }: { next: string }) {
     setError("");
     setLoading(true);
 
-    try {
-      const response = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
-      });
-      if (!response.ok) {
-        const body = await response.json().catch(() => ({}));
-        setError(body.error ?? `Request failed (${response.status})`);
-        setLoading(false);
-        return;
-      }
-      // A full page load (not router.push): the navbar link to /admin/menu was prefetched before login and the
-      // router can reuse that cached redirect to the login page, so the page would never change
-      window.location.assign(next);
-    } catch {
-      setError("Could not reach the server");
+    const result = await requestJson("/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    if (!result.ok) {
+      setError(result.error);
       setLoading(false);
+      return;
     }
+    // A full page load (not router.push): the navbar link to /admin/menu was prefetched before login and the
+    // router can reuse that cached redirect to the login page, so the page would never change
+    window.location.assign(next);
   }
 
   return (
