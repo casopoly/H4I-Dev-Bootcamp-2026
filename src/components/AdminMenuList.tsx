@@ -6,7 +6,6 @@ import Image from "next/image";
 import { MenuItem } from "@/types/MenuItem";
 import { MENU_CATEGORIES } from "@/constants/menu";
 import Button from "@/components/ui/Button";
-import { isAppBuiltinNotFoundPage } from "next/dist/build/utils";
 
 type Message = { kind: "success" | "error"; text: string };
 
