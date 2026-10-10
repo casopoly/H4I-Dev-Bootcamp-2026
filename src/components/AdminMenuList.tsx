@@ -6,6 +6,7 @@ import Image from "next/image";
 import { MenuItem } from "@/types/MenuItem";
 import { MENU_CATEGORIES } from "@/constants/menu";
 import Button from "@/components/ui/Button";
+import { tree } from "next/dist/build/templates/app-page";
 
 type Message = { kind: "success" | "error"; text: string };
 
@@ -13,6 +14,7 @@ export default function AdminMenuList() {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [message, setMessage] = useState<Message | null>(null);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const cooldownTime = 3000; // milliseconds
 
   const loadItems = useCallback(async () => {
@@ -23,9 +25,15 @@ export default function AdminMenuList() {
         setMessage({ kind: "error", text: "Could not load the menu" });
         return;
       }
+      if (isLoading) {
+        setMessage({ kind: "success", text: "Loading menu..." });
+      }
       setItems(await response.json());
     } catch {
       setMessage({ kind: "error", text: "Could not reach the server" });
+    } finally {
+      setIsLoading(false);
+      setMessage({ kind: "success", text: "No menu items yet" });
     }
   }, []);
 
