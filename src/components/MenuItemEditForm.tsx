@@ -3,8 +3,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MenuItem } from "@/types/MenuItem";
-import { MENU_CATEGORIES, MENU_SIZES, MenuCategory, MenuSize, MenuSizePrice } from "@/constants/menu";
+import {
+  MENU_CATEGORIES,
+  MENU_PLACEHOLDER_IMAGE,
+  MENU_SIZES,
+  MenuCategory,
+  MenuSize,
+  MenuSizePrice,
+} from "@/constants/menu";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import { MenuItemErrors, MenuItemField, validateMenuItem } from "@/lib/validateMenuItem";
@@ -27,20 +35,22 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 type Status = { kind: "idle" } | { kind: "saving" } | { kind: "success" } | { kind: "error"; message: string };
 
 /**
- * Form for editing every field of one menu item.
- * Save sends the fields to PUT /api/menu/<_id>; Cancel goes back to the admin list
+ * Form for every field of one menu item.
+ * With an item, Save sends the fields to PUT /api/menu/<_id>. Without one (create mode), the form starts
+ * empty and Save sends them to POST /api/menu, then goes back to the admin list. Cancel also goes back to the list
  */
-export default function MenuItemEditForm({ item }: { item: MenuItem }) {
-  const [name, setName] = useState(item.name);
-  const [category, setCategory] = useState<MenuCategory>(item.category);
+export default function MenuItemEditForm({ item }: { item?: MenuItem }) {
+  const router = useRouter();
+  const [name, setName] = useState(item?.name ?? "");
+  const [category, setCategory] = useState<MenuCategory>(item?.category ?? MENU_CATEGORIES[0]);
   // One price input per size, kept as text; a blank input means the item isn't sold in that size
   const [prices, setPrices] = useState<Record<MenuSize, string>>(() => {
     const initial: Record<MenuSize, string> = { S: "", M: "", L: "" };
-    for (const { size, price } of item.sizes) initial[size] = String(price);
+    for (const { size, price } of item?.sizes ?? []) initial[size] = String(price);
     return initial;
   });
-  const [description, setDescription] = useState(item.description);
-  const [image, setImage] = useState(item.image);
+  const [description, setDescription] = useState(item?.description ?? "");
+  const [image, setImage] = useState(item?.image ?? "");
   const [imageFailed, setImageFailed] = useState(false);
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [errors, setErrors] = useState<MenuItemErrors>({});
@@ -60,7 +70,14 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
       size: s,
       price: Number(prices[s]),
     }));
-    const fields = { name, category, sizes, description, image };
+    // A new item with no image gets the placeholder (the server does the same)
+    const fields = {
+      name,
+      category,
+      sizes,
+      description,
+      image: !item && image.trim() === "" ? MENU_PLACEHOLDER_IMAGE : image,
+    };
     const found = validateMenuItem(fields);
     setErrors(found);
     if (Object.keys(found).length > 0) {
@@ -71,8 +88,8 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
     setStatus({ kind: "saving" });
 
     try {
-      const response = await fetch(`/api/menu/${item._id}`, {
-        method: "PUT",
+      const response = await fetch(item ? `/api/menu/${item._id}` : "/api/menu", {
+        method: item ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(fields),
       });
@@ -84,6 +101,8 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
         return;
       }
       setStatus({ kind: "success" });
+      // A new item has nothing left to edit here, so show it in the list
+      if (!item) router.push("/admin/menu");
     } catch {
       setStatus({ kind: "error", message: "Could not reach the server" });
     }
@@ -123,7 +142,7 @@ export default function MenuItemEditForm({ item }: { item: MenuItem }) {
               type="text"
               className={fieldClass}
               value={image}
-              placeholder="/images/menu/drinks/latte-m.jpg"
+              placeholder={item ? "/images/menu/drinks/latte-m.jpg" : "Leave blank to use a placeholder image"}
               aria-invalid={errors.image ? true : undefined}
               aria-describedby={errors.image ? "image-error" : undefined}
               onChange={(e) => {
