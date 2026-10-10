@@ -5,7 +5,7 @@ import PageHeader from "@/components/ui/PageHeader";
 
 // Only go back to an admin page. Anything else (like another site) falls back to the admin list
 function safeNext(next: string | undefined): string {
-  return next && (next === "/admin" || next.startsWith("/admin/")) ? next : "/admin/menu";
+  return next && (next === "/admin" || next.startsWith("/admin/")) ? next : "/admin";
 }
 
 export default function AdminLoginPage({ searchParams }: { searchParams: { next?: string } }) {

@@ -39,8 +39,7 @@ export default function Footer() {
         </div>
         <div className="mt-8 flex flex-col gap-2 border-t border-brand-100 pt-6 text-xs text-brand-700 sm:flex-row sm:justify-between">
           <p>&copy; 2026 {SITE_NAME}. A fictional demo project, not affiliated with any other business.</p>
-          {/* Points to /admin/menu until the admin home page (/admin) exists */}
-          <Link href="/admin/menu">Admin</Link>
+          <Link href="/admin">Admin</Link>
         </div>
       </Container>
     </footer>

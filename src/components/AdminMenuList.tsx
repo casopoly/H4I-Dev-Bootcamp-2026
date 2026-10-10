@@ -6,30 +6,29 @@ import Image from "next/image";
 import { MenuItem } from "@/types/MenuItem";
 import { MENU_CATEGORIES } from "@/constants/menu";
 import Button from "@/components/ui/Button";
+import { requestJson } from "@/lib/requestJson";
 
 type Message = { kind: "success" | "error"; text: string };
 
+// "loading" until the first answer arrives; "failed" keeps the error on screen with a Try again button
+type LoadState = { kind: "loading" } | { kind: "ready" } | { kind: "failed"; error: string };
+
 export default function AdminMenuList() {
   const [items, setItems] = useState<MenuItem[]>([]);
+  const [loadState, setLoadState] = useState<LoadState>({ kind: "loading" });
   const [message, setMessage] = useState<Message | null>(null);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const cooldownTime = 3000; // milliseconds
 
   const loadItems = useCallback(async () => {
-    try {
-      // no-store so you never see a cached, out-of-date list
-      const response = await fetch("/api/menu", { cache: "no-store" });
-      if (!response.ok) {
-        setMessage({ kind: "error", text: "Could not load the menu" });
-        return;
-      }
-      setItems(await response.json());
-    } catch {
-      setMessage({ kind: "error", text: "Could not reach the server" });
-    } finally {
-      setIsLoading(false);
+    // no-store so you never see a cached, out-of-date list
+    const result = await requestJson<MenuItem[]>("/api/menu", { cache: "no-store" });
+    if (!result.ok) {
+      setLoadState({ kind: "failed", error: result.error });
+      return;
     }
+    setItems(result.data);
+    setLoadState({ kind: "ready" });
   }, []);
 
   // Load once when the page opens
@@ -37,39 +36,54 @@ export default function AdminMenuList() {
     loadItems();
   }, [loadItems]);
 
+  function retryLoad() {
+    setLoadState({ kind: "loading" });
+    loadItems();
+  }
+
   async function handleDelete(item: MenuItem) {
     if (!window.confirm(`Delete ${item.name}?`)) return;
     setIsDisabled(true);
     setMessage(null);
-    try {
-      const response = await fetch(`/api/menu/${item._id}`, { method: "DELETE" });
-      if (!response.ok) {
-        const body = await response.json().catch(() => ({}));
-        setMessage({ kind: "error", text: body.error ?? "Could not delete the item" });
-        return;
-      }
+
+    const result = await requestJson(`/api/menu/${item._id}`, { method: "DELETE" });
+    if (result.ok) {
       setMessage({ kind: "success", text: `Deleted ${item.name}` });
       await loadItems();
-    } catch {
-      setMessage({ kind: "error", text: "Could not reach the server" });
+    } else {
+      setMessage({ kind: "error", text: `Couldn't delete ${item.name}: ${result.error}` });
     }
 
+    // Re-enable the buttons after the cooldown, whether the delete worked or not
     setTimeout(() => {
       setIsDisabled(false);
     }, cooldownTime);
   }
 
+  if (loadState.kind === "loading") {
+    return <p className="text-brand-800">Loading the menu...</p>;
+  }
+
+  if (loadState.kind === "failed") {
+    return (
+      <Card className="flex flex-col items-start gap-4">
+        <p role="alert" className="font-medium text-red-700">
+          Couldn&apos;t load the menu: {loadState.error}
+        </p>
+        <Button onClick={retryLoad}>Try again</Button>
+      </Card>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-8">
-      {isLoading && <p className="text-brand-800">Loading menu...</p>}
-      {!isLoading && items.length === 0 && <p className="text-brand-800">No menu items yet.</p>}
-
       <p
         role="status"
         className={`text-sm font-medium ${message?.kind === "error" ? "text-red-700" : "text-brand-800"}`}
       >
         {message?.text}
       </p>
+      {items.length === 0 && <p className="text-brand-800">No menu items yet.</p>}
       {MENU_CATEGORIES.map((category) => (
         <section key={category}>
           <h1>{category}</h1>
