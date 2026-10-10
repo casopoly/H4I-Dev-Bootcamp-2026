@@ -10,7 +10,9 @@ let connection: typeof mongoose;
  */
 const connectDB = async () => {
   if (!connection) {
-    connection = await mongoose.connect(url);
+    // Give up after 5 seconds if the database can't be reached (the default is 30), so the visitor
+    // sees the error page quickly instead of a page that spins for half a minute
+    connection = await mongoose.connect(url, { serverSelectionTimeoutMS: 5000 });
   }
   return connection;
 };
