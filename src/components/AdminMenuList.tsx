@@ -83,6 +83,7 @@ export default function AdminMenuList() {
       >
         {message?.text}
       </p>
+      {items.length === 0 && <p className="text-brand-800">No menu items yet.</p>}
       {MENU_CATEGORIES.map((category) => (
         <section key={category}>
           <h1>{category}</h1>

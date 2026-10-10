@@ -15,6 +15,15 @@ export default function MenuBrowser({ items }: { items: MenuItem[] }) {
     items: filtered.filter((item) => item.category === category),
   })).filter((group) => group.items.length > 0);
 
+  if (items.length === 0) {
+    return (
+      <div>
+        <h1 className="text-3xl">Menu</h1>
+        <p className="text-brand-800">The menu is coming soon.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       {/* Stays under the navbar while scrolling, so the title and the search box are always visible.
@@ -32,7 +41,7 @@ export default function MenuBrowser({ items }: { items: MenuItem[] }) {
         </div>
       </div>
 
-      {groups.length === 0 ? (
+      {groups.length === 0 && items.length > 0 ? (
         <p className="text-brand-800">No items found.</p>
       ) : (
         <div className="mt-4 flex gap-8">
