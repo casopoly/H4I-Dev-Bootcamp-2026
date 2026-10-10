@@ -6,7 +6,7 @@ import Image from "next/image";
 import { MenuItem } from "@/types/MenuItem";
 import { MENU_CATEGORIES } from "@/constants/menu";
 import Button from "@/components/ui/Button";
-import { tree } from "next/dist/build/templates/app-page";
+import { isAppBuiltinNotFoundPage } from "next/dist/build/utils";
 
 type Message = { kind: "success" | "error"; text: string };
 
@@ -25,15 +25,11 @@ export default function AdminMenuList() {
         setMessage({ kind: "error", text: "Could not load the menu" });
         return;
       }
-      if (isLoading) {
-        setMessage({ kind: "success", text: "Loading menu..." });
-      }
       setItems(await response.json());
     } catch {
       setMessage({ kind: "error", text: "Could not reach the server" });
     } finally {
       setIsLoading(false);
-      setMessage({ kind: "success", text: "No menu items yet" });
     }
   }, []);
 
@@ -66,6 +62,9 @@ export default function AdminMenuList() {
 
   return (
     <div className="flex flex-col gap-8">
+      {isLoading && <p className="text-brand-800">Loading menu...</p>}
+      {!isLoading && items.length === 0 && <p className="text-brand-800">No menu items yet.</p>}
+
       <p
         role="status"
         className={`text-sm font-medium ${message?.kind === "error" ? "text-red-700" : "text-brand-800"}`}
