@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Button from "@/components/ui/Button";
-// TODO: confirm the real export/path of validateMessage (from issue #78)
+import { requestJson } from "@/lib/requestJson";
 import { validateMessage } from "@/lib/validateMessage";
 
 type Props = {
@@ -25,6 +25,8 @@ export default function ContactForm({ type, subject, initialMessage = "", onSent
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setServerError("");
+    // Clear an earlier "Thank you" so it never shows next to new errors
+    setStatus("idle");
 
     const payload = { name, email, message, type, subject };
     const found = validateMessage(payload);
@@ -32,25 +34,21 @@ export default function ContactForm({ type, subject, initialMessage = "", onSent
     if (Object.keys(found).length > 0) return;
 
     setStatus("sending");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong. Please try again.");
-      }
-      setStatus("success");
-      setName("");
-      setEmail("");
-      setMessage(initialMessage);
-      onSent?.();
-    } catch (err) {
-      setServerError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    const result = await requestJson("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!result.ok) {
+      setServerError(result.error);
       setStatus("error");
+      return;
     }
+    setStatus("success");
+    setName("");
+    setEmail("");
+    setMessage(initialMessage);
+    onSent?.();
   }
 
   return (

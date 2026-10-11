@@ -6,17 +6,14 @@ import { LOCATIONS } from "@/data/mockLocations";
 import Card from "@/components/ui/Card";
 import ContactForm from "@/components/ContactForm";
 
-// The message form (#79) goes under the location cards
 export default function Contact() {
   return (
     <main>
       <Navbar />
       <Container className="pb-16">
-        <PageHeader title="Contact us" subtitle="Come say hi at either of our shops." />
+        <PageHeader title="Contact us" subtitle="Questions, feedback or just saying hi? Send us a note." />
 
-        <h2 className="mb-4">Visit us</h2>
-
-        <section aria-labelledby="send-message" className="mx-auto w-full max-w-xl">
+        <section aria-labelledby="send-message" className="mx-auto mb-12 w-full max-w-xl">
           <Card className="p-6">
             <h2 id="send-message" className="text-2xl font-semibold">
               Send us a message
@@ -27,6 +24,8 @@ export default function Contact() {
           </Card>
         </section>
 
+        <h2 className="mb-2">Visit us</h2>
+        <p className="mb-4 text-brand-800">Come say hi at either of our shops.</p>
         <div className="grid gap-4 md:grid-cols-2">
           {LOCATIONS.map((location) => (
             <LocationCard key={location._id} item={location} />
