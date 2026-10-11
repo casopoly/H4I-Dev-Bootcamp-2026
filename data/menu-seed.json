@@ -273,6 +273,27 @@
     "existing": false
   },
   {
+    "name": "Maple Oat Latte",
+    "category": "Hot Drinks",
+    "description": "Espresso and steamed oat milk with a touch of real maple syrup.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.5
+      },
+      {
+        "size": "M",
+        "price": 6
+      },
+      {
+        "size": "L",
+        "price": 6.75
+      }
+    ],
+    "image": "/images/menu/drinks/maple-oat-latte.jpg",
+    "existing": false
+  },
+  {
     "name": "Hot Chocolate",
     "category": "Hot Drinks",
     "description": "Steamed milk and melted chocolate, topped with whipped cream.",
