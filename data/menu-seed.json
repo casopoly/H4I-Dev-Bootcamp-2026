@@ -567,6 +567,48 @@
     "existing": false
   },
   {
+    "name": "Strawberry Acai Refresher",
+    "category": "Cold Drinks",
+    "description": "Sparkling strawberry and acai shaken with lemon over ice.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.75
+      },
+      {
+        "size": "M",
+        "price": 5.25
+      },
+      {
+        "size": "L",
+        "price": 6
+      }
+    ],
+    "image": "/images/menu/drinks/strawberry-acai-refresher.jpg",
+    "existing": false
+  },
+  {
+    "name": "Mango Dragonfruit Refresher",
+    "category": "Cold Drinks",
+    "description": "Tropical mango and dragonfruit shaken with coconut water over ice.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.75
+      },
+      {
+        "size": "M",
+        "price": 5.25
+      },
+      {
+        "size": "L",
+        "price": 6
+      }
+    ],
+    "image": "/images/menu/drinks/mango-dragonfruit-refresher.jpg",
+    "existing": false
+  },
+  {
     "name": "Croissant",
     "category": "Pastries",
     "description": "Flaky, buttery layers baked fresh each morning.",
