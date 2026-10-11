@@ -8,7 +8,7 @@ export default function LocationCard({ item }: { item: Location }) {
   return (
     <Card className="flex flex-col gap-4">
       <Image
-        className="h-48 w-full rounded-lg object-cover object-[50%_30%]"
+        className="aspect-[3/2] w-full rounded-lg object-cover"
         src={item.image}
         alt={`Our ${item.city} location`}
         width={600}
