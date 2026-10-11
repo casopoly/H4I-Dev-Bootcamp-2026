@@ -17,7 +17,8 @@ export default function MenuCard({ item }: { item: MenuItem }) {
         <p className="text-sm text-brand-800">
           {item.sizes.map((size) => (
             <span key={size.size} className="block">
-              {size.size}: <strong>${size.price.toFixed(2)}</strong>
+              {item.sizes.length > 1 && `${size.size}: `}
+              <strong>${size.price.toFixed(2)}</strong>
             </span>
           ))}
         </p>

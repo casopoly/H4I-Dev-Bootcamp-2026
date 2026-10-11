@@ -11,7 +11,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Smooth matcha blended with milk and served over ice.",
-    image: "/images/menu/drinks/iced-matcha-latte-l.jpg",
+    image: "/images/menu/drinks/iced-matcha-latte.jpg",
   },
   {
     _id: "item_2",
@@ -23,7 +23,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Slow-steeped coffee with a smooth, rich flavor served over ice.",
-    image: "/images/menu/drinks/cold-brew-l.jpg",
+    image: "/images/menu/drinks/cold-brew.jpg",
   },
   {
     _id: "item_3",
@@ -35,7 +35,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Espresso and milk sweetened with vanilla and served over ice.",
-    image: "/images/menu/drinks/iced-vanilla-latte-l.jpg",
+    image: "/images/menu/drinks/iced-vanilla-latte.jpg",
   },
   {
     _id: "item_5",
@@ -47,7 +47,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Rich espresso topped with steamed milk and a layer of foam.",
-    image: "/images/menu/drinks/cappuccino-m.jpg",
+    image: "/images/menu/drinks/cappuccino.jpg",
   },
   {
     _id: "item_6",
@@ -59,7 +59,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Espresso and steamed milk blended with rich dark chocolate.",
-    image: "/images/menu/drinks/dark-chocolate-mocha-m.jpg",
+    image: "/images/menu/drinks/dark-chocolate-mocha.jpg",
   },
   {
     _id: "item_7",
@@ -71,7 +71,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Espresso and steamed milk with a smooth, nutty pistachio flavor.",
-    image: "/images/menu/drinks/pistachio-latte-m.jpg",
+    image: "/images/menu/drinks/pistachio-latte.jpg",
   },
   {
     _id: "item_8",
@@ -83,7 +83,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Espresso and steamed milk flavored with warm pumpkin spice.",
-    image: "/images/menu/drinks/pumpkin-spice-latte-m.jpg",
+    image: "/images/menu/drinks/pumpkin-spice-latte.jpg",
   },
   {
     _id: "item_9",
@@ -95,7 +95,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Black tea blended with steamed milk and warm aromatic spices.",
-    image: "/images/menu/drinks/chai-latte-s.jpg",
+    image: "/images/menu/drinks/chai-latte.jpg",
   },
   {
     _id: "item_10",
@@ -107,7 +107,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Classic black tea with a bright citrusy bergamot flavor.",
-    image: "/images/menu/drinks/earl-grey-tea-s.jpg",
+    image: "/images/menu/drinks/earl-grey-tea.jpg",
   },
   {
     _id: "item_14",
@@ -119,7 +119,7 @@ export const DUMMY_MENU: MenuItem[] = [
       { size: "L", price: 6.45 },
     ],
     description: "Stone-ground matcha whisked with hot water for a bright, earthy green tea.",
-    image: "/images/menu/drinks/matcha-m.jpg",
+    image: "/images/menu/drinks/matcha.jpg",
   },
   {
     _id: "item_11",
