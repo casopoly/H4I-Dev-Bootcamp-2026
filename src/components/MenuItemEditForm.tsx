@@ -138,7 +138,7 @@ export default function MenuItemEditForm({ item }: { item?: MenuItem }) {
               type="text"
               className={fieldClass}
               value={image}
-              placeholder={item ? "/images/menu/drinks/latte-m.jpg" : "Leave blank to use a placeholder image"}
+              placeholder={item ? "/images/menu/drinks/latte.jpg" : "Leave blank to use a placeholder image"}
               aria-invalid={errors.image ? true : undefined}
               aria-describedby={errors.image ? "image-error" : undefined}
               onChange={(e) => {
