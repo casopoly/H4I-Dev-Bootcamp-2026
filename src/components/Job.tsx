@@ -13,7 +13,7 @@ export default function JobCard({ job }: { job: Job }) {
     { label: "Hours", value: `${job.hoursPerWeek}/week` },
     { label: "Rate", value: `$${job.rate.toFixed(2)}/hour` },
     { label: "Description", value: job.description },
-    { label: "Location", value: location ? `${location.city}, ${location.state}` : job.location },
+    { label: "Location", value: location ? `${location.address}, ${location.city}` : job.location },
   ];
 
   return (
