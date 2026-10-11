@@ -38,7 +38,8 @@ if (problems.length) {
   process.exit(1);
 }
 
-await mongoose.connect(uri, { serverSelectionTimeoutMS: 5000 });
+// Waits up to 30 seconds: from some networks (WSL) Atlas takes longer than the 5 seconds the app allows
+await mongoose.connect(uri, { serverSelectionTimeoutMS: 30000 });
 const items = mongoose.connection.db.collection("menu_items");
 console.log(`${apply ? "APPLY" : "DRY RUN"} on database "${mongoose.connection.name}"`);
 console.log(`menu_items has ${await items.countDocuments()} documents; the seed has ${seed.length} items\n`);
