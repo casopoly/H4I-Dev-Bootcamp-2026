@@ -9,12 +9,12 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 /**
- * Returns every document in the menu_items collection
+ * Returns every document in the menu_items collection, sorted by name (A to Z, ignoring case)
  */
 export async function GET() {
   try {
     await connectDB();
-    const items = await MenuItem.find({});
+    const items = await MenuItem.find({}).sort({ name: 1 }).collation({ locale: "en", strength: 2 });
     return NextResponse.json(items);
   } catch (error) {
     console.error(error);

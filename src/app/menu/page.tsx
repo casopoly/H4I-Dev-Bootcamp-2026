@@ -10,7 +10,10 @@ export const dynamic = "force-dynamic";
 
 export default async function Menu() {
   await connectDB();
-  const docs = await MenuItemModel.find({}).lean<MenuItem[]>();
+  const docs = await MenuItemModel.find({})
+    .sort({ name: 1 })
+    .collation({ locale: "en", strength: 2 })
+    .lean<MenuItem[]>();
   const menuItems: MenuItem[] = docs.map(serializeMenuItem);
 
   return (
