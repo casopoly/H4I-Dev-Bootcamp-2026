@@ -1,0 +1,725 @@
+[
+  {
+    "name": "Espresso",
+    "category": "Hot Drinks",
+    "description": "A short, bold shot pulled from our house blend, with a caramel finish.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4
+      },
+      {
+        "size": "M",
+        "price": 4.5
+      },
+      {
+        "size": "L",
+        "price": 5.25
+      }
+    ],
+    "image": "/images/menu/drinks/espresso.jpg",
+    "existing": false
+  },
+  {
+    "name": "Americano",
+    "category": "Hot Drinks",
+    "description": "Espresso topped with hot water for a smooth, full cup.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 3.75
+      },
+      {
+        "size": "M",
+        "price": 4.25
+      },
+      {
+        "size": "L",
+        "price": 5
+      }
+    ],
+    "image": "/images/menu/drinks/americano.jpg",
+    "existing": false
+  },
+  {
+    "name": "Cappuccino",
+    "category": "Hot Drinks",
+    "description": "Equal parts espresso, steamed milk and thick, airy foam.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.5
+      },
+      {
+        "size": "M",
+        "price": 5
+      },
+      {
+        "size": "L",
+        "price": 5.75
+      }
+    ],
+    "image": "/images/menu/drinks/cappuccino.jpg",
+    "existing": true
+  },
+  {
+    "name": "Flat White",
+    "category": "Hot Drinks",
+    "description": "Velvety microfoam over a double shot of espresso.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.5
+      },
+      {
+        "size": "M",
+        "price": 5
+      },
+      {
+        "size": "L",
+        "price": 5.75
+      }
+    ],
+    "image": "/images/menu/drinks/flat-white.jpg",
+    "existing": false
+  },
+  {
+    "name": "Caramel Macchiato",
+    "category": "Hot Drinks",
+    "description": "Vanilla, steamed milk and espresso, finished with a caramel drizzle.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.25
+      },
+      {
+        "size": "M",
+        "price": 5.75
+      },
+      {
+        "size": "L",
+        "price": 6.5
+      }
+    ],
+    "image": "/images/menu/drinks/caramel-macchiato.jpg",
+    "existing": false
+  },
+  {
+    "name": "Honey Lavender Latte",
+    "category": "Hot Drinks",
+    "description": "Espresso and steamed milk lightly sweetened with local honey and lavender.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.5
+      },
+      {
+        "size": "M",
+        "price": 6
+      },
+      {
+        "size": "L",
+        "price": 6.75
+      }
+    ],
+    "image": "/images/menu/drinks/honey-lavender-latte.jpg",
+    "existing": false
+  },
+  {
+    "name": "Dark Chocolate Mocha",
+    "category": "Hot Drinks",
+    "description": "Espresso, steamed milk and rich dark chocolate, topped with whipped cream.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.25
+      },
+      {
+        "size": "M",
+        "price": 5.75
+      },
+      {
+        "size": "L",
+        "price": 6.5
+      }
+    ],
+    "image": "/images/menu/drinks/dark-chocolate-mocha.jpg",
+    "existing": true
+  },
+  {
+    "name": "Chai Latte",
+    "category": "Hot Drinks",
+    "description": "Black tea simmered with cinnamon, cardamom and ginger, with steamed milk.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.75
+      },
+      {
+        "size": "M",
+        "price": 5.25
+      },
+      {
+        "size": "L",
+        "price": 6
+      }
+    ],
+    "image": "/images/menu/drinks/chai-latte.jpg",
+    "existing": true
+  },
+  {
+    "name": "Pistachio Latte",
+    "category": "Hot Drinks",
+    "description": "Espresso and steamed milk with a nutty, creamy pistachio sauce.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.5
+      },
+      {
+        "size": "M",
+        "price": 6
+      },
+      {
+        "size": "L",
+        "price": 6.75
+      }
+    ],
+    "image": "/images/menu/drinks/pistachio-latte.jpg",
+    "existing": true
+  },
+  {
+    "name": "Pumpkin Spice Latte",
+    "category": "Hot Drinks",
+    "description": "Our fall favorite: pumpkin, cinnamon and nutmeg with espresso and milk.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.5
+      },
+      {
+        "size": "M",
+        "price": 6
+      },
+      {
+        "size": "L",
+        "price": 6.75
+      }
+    ],
+    "image": "/images/menu/drinks/pumpkin-spice-latte.jpg",
+    "existing": true
+  },
+  {
+    "name": "Matcha",
+    "category": "Hot Drinks",
+    "description": "Ceremonial-grade matcha whisked with steamed milk.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.75
+      },
+      {
+        "size": "M",
+        "price": 5.25
+      },
+      {
+        "size": "L",
+        "price": 6
+      }
+    ],
+    "image": "/images/menu/drinks/matcha.jpg",
+    "existing": true
+  },
+  {
+    "name": "Earl Grey Tea",
+    "category": "Hot Drinks",
+    "description": "Black tea scented with bergamot, steeped to order.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 3.5
+      },
+      {
+        "size": "M",
+        "price": 4
+      },
+      {
+        "size": "L",
+        "price": 4.75
+      }
+    ],
+    "image": "/images/menu/drinks/earl-grey-tea.jpg",
+    "existing": true
+  },
+  {
+    "name": "London Fog",
+    "category": "Hot Drinks",
+    "description": "Earl Grey with steamed milk and a splash of vanilla.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.75
+      },
+      {
+        "size": "M",
+        "price": 5.25
+      },
+      {
+        "size": "L",
+        "price": 6
+      }
+    ],
+    "image": "/images/menu/drinks/london-fog.jpg",
+    "existing": false
+  },
+  {
+    "name": "Hot Chocolate",
+    "category": "Hot Drinks",
+    "description": "Steamed milk and melted chocolate, topped with whipped cream.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4
+      },
+      {
+        "size": "M",
+        "price": 4.5
+      },
+      {
+        "size": "L",
+        "price": 5.25
+      }
+    ],
+    "image": "/images/menu/drinks/hot-chocolate.jpg",
+    "existing": false
+  },
+  {
+    "name": "Cold Brew",
+    "category": "Cold Drinks",
+    "description": "Coffee steeped slowly for 18 hours, smooth and low in acid.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.25
+      },
+      {
+        "size": "M",
+        "price": 4.75
+      },
+      {
+        "size": "L",
+        "price": 5.5
+      }
+    ],
+    "image": "/images/menu/drinks/cold-brew.jpg",
+    "existing": true
+  },
+  {
+    "name": "Nitro Cold Brew",
+    "category": "Cold Drinks",
+    "description": "Cold brew infused with nitrogen for a creamy, cascading pour.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5
+      },
+      {
+        "size": "M",
+        "price": 5.5
+      },
+      {
+        "size": "L",
+        "price": 6.25
+      }
+    ],
+    "image": "/images/menu/drinks/nitro-cold-brew.jpg",
+    "existing": false
+  },
+  {
+    "name": "Sweet Cream Cold Brew",
+    "category": "Cold Drinks",
+    "description": "Cold brew finished with a float of vanilla sweet cream.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.25
+      },
+      {
+        "size": "M",
+        "price": 5.75
+      },
+      {
+        "size": "L",
+        "price": 6.5
+      }
+    ],
+    "image": "/images/menu/drinks/sweet-cream-cold-brew.jpg",
+    "existing": false
+  },
+  {
+    "name": "Iced Vanilla Latte",
+    "category": "Cold Drinks",
+    "description": "Espresso, cold milk and vanilla over ice.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5
+      },
+      {
+        "size": "M",
+        "price": 5.5
+      },
+      {
+        "size": "L",
+        "price": 6.25
+      }
+    ],
+    "image": "/images/menu/drinks/iced-vanilla-latte.jpg",
+    "existing": true
+  },
+  {
+    "name": "Iced Mocha",
+    "category": "Cold Drinks",
+    "description": "Espresso, chocolate and cold milk over ice.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.25
+      },
+      {
+        "size": "M",
+        "price": 5.75
+      },
+      {
+        "size": "L",
+        "price": 6.5
+      }
+    ],
+    "image": "/images/menu/drinks/iced-mocha.jpg",
+    "existing": false
+  },
+  {
+    "name": "Iced Americano",
+    "category": "Cold Drinks",
+    "description": "Espresso poured over cold water and ice.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 3.75
+      },
+      {
+        "size": "M",
+        "price": 4.25
+      },
+      {
+        "size": "L",
+        "price": 5
+      }
+    ],
+    "image": "/images/menu/drinks/iced-americano.jpg",
+    "existing": false
+  },
+  {
+    "name": "Iced Chai Latte",
+    "category": "Cold Drinks",
+    "description": "Spiced chai and cold milk served over ice.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.75
+      },
+      {
+        "size": "M",
+        "price": 5.25
+      },
+      {
+        "size": "L",
+        "price": 6
+      }
+    ],
+    "image": "/images/menu/drinks/iced-chai-latte.jpg",
+    "existing": false
+  },
+  {
+    "name": "Iced Matcha Latte",
+    "category": "Cold Drinks",
+    "description": "Matcha and cold milk shaken over ice.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5
+      },
+      {
+        "size": "M",
+        "price": 5.5
+      },
+      {
+        "size": "L",
+        "price": 6.25
+      }
+    ],
+    "image": "/images/menu/drinks/iced-matcha-latte.jpg",
+    "existing": true
+  },
+  {
+    "name": "Peach Green Tea",
+    "category": "Cold Drinks",
+    "description": "Iced green tea brewed fresh and lightly sweetened with peach.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4
+      },
+      {
+        "size": "M",
+        "price": 4.5
+      },
+      {
+        "size": "L",
+        "price": 5.25
+      }
+    ],
+    "image": "/images/menu/drinks/peach-green-tea.jpg",
+    "existing": false
+  },
+  {
+    "name": "Strawberry Lemonade",
+    "category": "Cold Drinks",
+    "description": "Fresh-squeezed lemonade blended with strawberries.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 4.25
+      },
+      {
+        "size": "M",
+        "price": 4.75
+      },
+      {
+        "size": "L",
+        "price": 5.5
+      }
+    ],
+    "image": "/images/menu/drinks/strawberry-lemonade.jpg",
+    "existing": false
+  },
+  {
+    "name": "Mocha Frappe",
+    "category": "Cold Drinks",
+    "description": "Blended espresso, chocolate and ice, topped with whipped cream.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.75
+      },
+      {
+        "size": "M",
+        "price": 6.25
+      },
+      {
+        "size": "L",
+        "price": 7
+      }
+    ],
+    "image": "/images/menu/drinks/mocha-frappe.jpg",
+    "existing": false
+  },
+  {
+    "name": "Berry Smoothie",
+    "category": "Cold Drinks",
+    "description": "Strawberries, blueberries and banana blended with yogurt.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.75
+      },
+      {
+        "size": "M",
+        "price": 6.25
+      },
+      {
+        "size": "L",
+        "price": 7
+      }
+    ],
+    "image": "/images/menu/drinks/berry-smoothie.jpg",
+    "existing": false
+  },
+  {
+    "name": "Mango Smoothie",
+    "category": "Cold Drinks",
+    "description": "Ripe mango and pineapple blended with orange juice.",
+    "sizes": [
+      {
+        "size": "S",
+        "price": 5.75
+      },
+      {
+        "size": "M",
+        "price": 6.25
+      },
+      {
+        "size": "L",
+        "price": 7
+      }
+    ],
+    "image": "/images/menu/drinks/mango-smoothie.jpg",
+    "existing": false
+  },
+  {
+    "name": "Croissant",
+    "category": "Pastries",
+    "description": "Flaky, buttery layers baked fresh each morning.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 3.5
+      }
+    ],
+    "image": "/images/menu/pastries/croissant.jpg",
+    "existing": true
+  },
+  {
+    "name": "Chocolate Croissant",
+    "category": "Pastries",
+    "description": "Our croissant dough wrapped around two bars of dark chocolate.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 4.25
+      }
+    ],
+    "image": "/images/menu/pastries/chocolate-croissant.jpg",
+    "existing": false
+  },
+  {
+    "name": "Almond Croissant",
+    "category": "Pastries",
+    "description": "A twice-baked croissant filled with almond cream and topped with sliced almonds.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 4.5
+      }
+    ],
+    "image": "/images/menu/pastries/almond-croissant.jpg",
+    "existing": false
+  },
+  {
+    "name": "Cinnamon Roll",
+    "category": "Pastries",
+    "description": "A soft roll with cinnamon sugar and cream cheese icing.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 4.75
+      }
+    ],
+    "image": "/images/menu/pastries/cinnamon-roll.jpg",
+    "existing": false
+  },
+  {
+    "name": "Blueberry Muffin",
+    "category": "Pastries",
+    "description": "A tender muffin packed with blueberries and a crumbly sugar top.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 3.75
+      }
+    ],
+    "image": "/images/menu/pastries/blueberry-muffin.jpg",
+    "existing": true
+  },
+  {
+    "name": "Banana Nut Muffin",
+    "category": "Pastries",
+    "description": "Ripe banana and toasted walnuts in a moist muffin.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 3.75
+      }
+    ],
+    "image": "/images/menu/pastries/banana-nut-muffin.jpg",
+    "existing": false
+  },
+  {
+    "name": "Blueberry Scone",
+    "category": "Pastries",
+    "description": "A crumbly buttermilk scone baked with blueberries.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 3.75
+      }
+    ],
+    "image": "/images/menu/pastries/blueberry-scone.jpg",
+    "existing": false
+  },
+  {
+    "name": "Cranberry Orange Scone",
+    "category": "Pastries",
+    "description": "A buttery scone with dried cranberries and orange zest.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 3.75
+      }
+    ],
+    "image": "/images/menu/pastries/cranberry-orange-scone.jpg",
+    "existing": false
+  },
+  {
+    "name": "Lemon Poppy Seed Loaf",
+    "category": "Pastries",
+    "description": "A slice of lemon loaf with a sweet glaze and poppy seeds.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 4
+      }
+    ],
+    "image": "/images/menu/pastries/lemon-poppy-seed-loaf.jpg",
+    "existing": false
+  },
+  {
+    "name": "Cheese Danish",
+    "category": "Pastries",
+    "description": "Flaky pastry with a sweet cream cheese filling.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 4.25
+      }
+    ],
+    "image": "/images/menu/pastries/cheese-danish.jpg",
+    "existing": false
+  },
+  {
+    "name": "Chocolate Chip Cookie",
+    "category": "Pastries",
+    "description": "A big, chewy cookie with melted chocolate chunks.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 2.75
+      }
+    ],
+    "image": "/images/menu/pastries/chocolate-chip-cookie.jpg",
+    "existing": true
+  },
+  {
+    "name": "Fudge Brownie",
+    "category": "Pastries",
+    "description": "A dense, fudgy brownie with a crackly top.",
+    "sizes": [
+      {
+        "size": "M",
+        "price": 3.5
+      }
+    ],
+    "image": "/images/menu/pastries/fudge-brownie.jpg",
+    "existing": false
+  }
+]
