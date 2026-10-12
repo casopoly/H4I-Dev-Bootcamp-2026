@@ -13,22 +13,28 @@ const rules: Record<MenuItemField, (value: unknown) => string | undefined> = {
     (MENU_CATEGORIES as readonly unknown[]).includes(value)
       ? undefined
       : `Category must be one of: ${MENU_CATEGORIES.join(", ")}`,
-  sizes: (values) =>
-    Array.isArray(values) &&
-    values.length > 0 &&
-    values.every(
-      (v) =>
-        typeof v === "object" &&
-        v !== null &&
-        "size" in v &&
-        "price" in v &&
-        MENU_SIZES.includes(v.size) &&
-        typeof v.price === "number" &&
-        Number.isFinite(v.price) &&
-        v.price >= 0,
-    )
-      ? undefined
-      : "Enter a valid price (0 or more) for at least one size (S, M, L)",
+  sizes: (values) => {
+    const valid =
+      Array.isArray(values) &&
+      values.length > 0 &&
+      values.every(
+        (v) =>
+          typeof v === "object" &&
+          v !== null &&
+          "size" in v &&
+          "price" in v &&
+          MENU_SIZES.includes(v.size) &&
+          typeof v.price === "number" &&
+          Number.isFinite(v.price) &&
+          v.price > 0,
+      );
+    if (!valid) return "Enter a valid price (greater than 0) for at least one size (S, M, L)";
+    if (values.length > MENU_SIZES.length) return `An item can have at most ${MENU_SIZES.length} sizes`;
+    if (new Set(values.map((v: { size: string }) => v.size)).size !== values.length) {
+      return "Each size can only appear once";
+    }
+    return undefined;
+  },
   description: (value) => (isNonEmptyString(value) ? undefined : "Description is required"),
   image: (value) =>
     typeof value === "string" && value.startsWith("/images/")
