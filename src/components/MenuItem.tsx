@@ -1,6 +1,7 @@
 import { MenuItem } from "@/types/MenuItem";
 import Image from "next/image";
 import Card from "@/components/ui/Card";
+import ItemPrices from "@/components/ItemPrices";
 
 export default function MenuCard({ item }: { item: MenuItem }) {
   // Only an explicit false is sold out; a missing value counts as available
@@ -25,14 +26,9 @@ export default function MenuCard({ item }: { item: MenuItem }) {
             </span>
           )}
         </h2>
-        <p className={`text-sm text-brand-800 ${faded}`}>
-          {item.sizes.map((size) => (
-            <span key={size.size} className="block">
-              {item.sizes.length > 1 && `${size.size}: `}
-              <strong>${size.price.toFixed(2)}</strong>
-            </span>
-          ))}
-        </p>
+        <div className={faded}>
+          <ItemPrices sizes={item.sizes} />
+        </div>
         <p className={`text-sm italic text-brand-800 line-clamp-3 ${faded}`}>{item.description}</p>
       </div>
     </Card>

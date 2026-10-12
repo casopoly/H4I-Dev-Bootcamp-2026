@@ -2,7 +2,7 @@ import Link from "next/link";
 
 // Shared button. Pass `href` to render a link that looks like a button.
 // variant="dark" stands out on light or photo backgrounds.
-const base = "inline-block rounded-lg font-medium transition-colors";
+const base = "inline-flex items-center justify-center gap-3 rounded-lg font-medium transition-colors";
 const sizes = {
   md: "px-5 py-2.5",
   lg: "px-10 py-4 text-2xl",
@@ -19,8 +19,8 @@ type Props = {
   size?: keyof typeof sizes;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export default function Button({ children, href, variant = "primary", size = "md", ...rest }: Props) {
-  const styles = `${base} ${sizes[size]} ${variants[variant]}`;
+export default function Button({ children, href, variant = "primary", size = "md", className = "", ...rest }: Props) {
+  const styles = `${base} ${sizes[size]} ${variants[variant]} ${className}`.trim();
   if (href) {
     return (
       <Link href={href} className={styles}>

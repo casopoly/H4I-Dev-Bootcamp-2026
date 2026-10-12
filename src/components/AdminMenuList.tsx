@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Card from "@/components/ui/Card";
+import ItemPrices from "@/components/ItemPrices";
 import Image from "next/image";
 import { MenuItem } from "@/types/MenuItem";
 import { MENU_CATEGORIES } from "@/constants/menu";
@@ -108,14 +109,7 @@ export default function AdminMenuList() {
                         </span>
                       )}
                     </h2>
-                    <p className="text-sm text-brand-800">
-                      {item.sizes.map((size) => (
-                        <span key={size.size} className="block">
-                          {item.sizes.length > 1 && `${size.size}: `}
-                          <strong>${size.price.toFixed(2)}</strong>
-                        </span>
-                      ))}
-                    </p>
+                    <ItemPrices sizes={item.sizes} />
                     <p className="text-sm italic text-brand-800 line-clamp-3">{item.description}</p>
                   </div>
                   <div className="flex flex-row gap-4 text-center sm:ml-auto">
