@@ -14,5 +14,7 @@ export function serializeMenuItem(doc: MenuItemDoc): MenuItem {
     sizes: doc.sizes.map((s) => ({ size: s.size, price: s.price })),
     description: doc.description,
     image: doc.image,
+    // Items saved before the field existed have no value (and .lean() skips schema defaults), so only an explicit false is sold out
+    available: doc.available !== false,
   };
 }

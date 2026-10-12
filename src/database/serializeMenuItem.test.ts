@@ -29,7 +29,14 @@ describe("serializeMenuItem", () => {
     const item = serializeMenuItem(leanDoc());
 
     expect(item).not.toHaveProperty("__v");
-    expect(Object.keys(item).sort()).toEqual(["_id", "category", "description", "image", "name", "sizes"]);
+    expect(Object.keys(item).sort()).toEqual(["_id", "available", "category", "description", "image", "name", "sizes"]);
+  });
+
+  it("treats an item with no available value as available, and only an explicit false as sold out", () => {
+    // Items saved before the field existed have no value, and .lean() doesn't fill in schema defaults
+    expect(serializeMenuItem(leanDoc()).available).toBe(true);
+    expect(serializeMenuItem({ ...(leanDoc() as object), available: true } as never).available).toBe(true);
+    expect(serializeMenuItem({ ...(leanDoc() as object), available: false } as never).available).toBe(false);
   });
 
   it("copies sizes as plain { size, price } objects, even from a full Mongoose document", () => {

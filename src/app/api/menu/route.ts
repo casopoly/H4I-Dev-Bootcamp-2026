@@ -57,6 +57,7 @@ export async function POST(request: NextRequest) {
       sizes: fields.sizes,
       description: fields.description,
       image: fields.image,
+      available: fields.available,
     });
     return NextResponse.json(serializeMenuItem(saved), { status: 201 });
   } catch (error) {

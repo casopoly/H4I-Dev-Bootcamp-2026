@@ -31,6 +31,7 @@ const menuSchema = new Schema<Omit<MenuItem, "_id">>({
   },
   description: { type: String, required: true },
   image: { type: String, required: true },
+  available: { type: Boolean, default: true },
 });
 
 export default mongoose.models.MenuItem || mongoose.model("MenuItem", menuSchema, "menu_items");

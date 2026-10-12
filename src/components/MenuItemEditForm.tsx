@@ -52,6 +52,7 @@ export default function MenuItemEditForm({ item }: { item?: MenuItem }) {
   });
   const [description, setDescription] = useState(item?.description ?? "");
   const [image, setImage] = useState(item?.image ?? "");
+  const [available, setAvailable] = useState(item?.available !== false);
   const [imageFailed, setImageFailed] = useState(false);
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [errors, setErrors] = useState<MenuItemErrors>({});
@@ -78,6 +79,7 @@ export default function MenuItemEditForm({ item }: { item?: MenuItem }) {
       sizes,
       description,
       image: !item && image.trim() === "" ? MENU_PLACEHOLDER_IMAGE : image,
+      available,
     };
     const found = validateMenuItem(fields);
     setErrors(found);
@@ -241,6 +243,19 @@ export default function MenuItemEditForm({ item }: { item?: MenuItem }) {
             }}
           />
           <FieldError id="description-error" message={errors.description} />
+        </div>
+
+        <div>
+          <label htmlFor="available" className="flex items-center gap-2 text-sm font-semibold text-brand-700">
+            <input
+              id="available"
+              type="checkbox"
+              className="h-5 w-5 accent-brand-600"
+              checked={available}
+              onChange={(e) => setAvailable(e.target.checked)}
+            />
+            Available (uncheck to show the item as sold out)
+          </label>
         </div>
 
         <div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between">
