@@ -100,7 +100,14 @@ export default function AdminMenuList() {
                     height={100}
                   />
                   <div>
-                    <h2 className="text-xl">{item.name}</h2>
+                    <h2 className="text-xl">
+                      {item.name}
+                      {item.available === false && (
+                        <span className="ml-2 inline-block rounded bg-rose-800/80 px-2 py-0.5 align-middle font-sans text-xs font-semibold uppercase tracking-wide text-white">
+                          Sold out
+                        </span>
+                      )}
+                    </h2>
                     <p className="text-sm text-brand-800">
                       {item.sizes.map((size) => (
                         <span key={size.size} className="block">

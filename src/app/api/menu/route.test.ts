@@ -41,7 +41,8 @@ describe("POST /api/menu", () => {
     expect(response.status).toBe(201);
     // Only the known fields reach the database, so the client can't choose the _id
     expect(create).toHaveBeenCalledWith(validItem);
-    expect(await response.json()).toEqual({ _id: "6702f1c2a1b2c3d4e5f60718", ...validItem });
+    // A new item is available unless the client says otherwise
+    expect(await response.json()).toEqual({ _id: "6702f1c2a1b2c3d4e5f60718", ...validItem, available: true });
   });
 
   it("gives an item with no image the placeholder image", async () => {

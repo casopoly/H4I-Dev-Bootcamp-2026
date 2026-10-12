@@ -1,7 +1,7 @@
 import { MENU_CATEGORIES, MENU_SIZES } from "@/constants/menu";
 
 // The fields an admin can edit, and the error message (if any) for each one
-export type MenuItemField = "name" | "category" | "sizes" | "description" | "image";
+export type MenuItemField = "name" | "category" | "sizes" | "description" | "image" | "available";
 export type MenuItemErrors = Partial<Record<MenuItemField, string>>;
 
 const isNonEmptyString = (value: unknown): value is string => typeof value === "string" && value.trim() !== "";
@@ -40,6 +40,9 @@ const rules: Record<MenuItemField, (value: unknown) => string | undefined> = {
     typeof value === "string" && value.startsWith("/images/")
       ? undefined
       : 'Image must be a path that starts with "/images/"',
+  // Optional: leaving it out keeps the item available
+  available: (value) =>
+    value === undefined || typeof value === "boolean" ? undefined : "Available must be true or false",
 };
 
 /**

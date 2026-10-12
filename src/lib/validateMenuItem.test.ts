@@ -64,3 +64,20 @@ describe("validateMenuItem", () => {
     });
   });
 });
+
+describe("validateMenuItem available", () => {
+  it("accepts true, false, or leaving it out", () => {
+    expect(invalidFields({ ...validItem, available: true })).toEqual([]);
+    expect(invalidFields({ ...validItem, available: false })).toEqual([]);
+    expect(invalidFields(validItem)).toEqual([]);
+  });
+
+  it("rejects a value that isn't true or false", () => {
+    expect(invalidFields({ ...validItem, available: "no" })).toEqual(["available"]);
+    expect(invalidFields({ available: 0 }, { partial: true })).toEqual(["available"]);
+  });
+
+  it("lets an update send only available", () => {
+    expect(invalidFields({ available: false }, { partial: true })).toEqual([]);
+  });
+});

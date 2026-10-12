@@ -42,3 +42,13 @@ describe("menu item schema", () => {
     expect(validate({ sizes: [{ size: "S", price: 0 }] })?.errors["sizes.0.price"]).toBeDefined();
   });
 });
+
+describe("menu item available field", () => {
+  it("defaults to true when it isn't given", () => {
+    expect(new MenuItem({ ...base, sizes: sizes(1) }).available).toBe(true);
+  });
+
+  it("keeps false", () => {
+    expect(new MenuItem({ ...base, sizes: sizes(1), available: false }).available).toBe(false);
+  });
+});
