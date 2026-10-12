@@ -1,13 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MenuItem } from "@/types/MenuItem";
 import { MENU_CATEGORIES } from "@/constants/menu";
 import MenuCard from "@/components/MenuItem";
+import { CloseIcon, SearchIcon } from "@/components/ui/icons";
 
 const slug = (s: string): string => s.toLowerCase().replace(/\s+/g, "-");
 
 export default function MenuBrowser({ items }: { items: MenuItem[] }) {
   const [query, setQuery] = useState("");
+  const searchRef = useRef<HTMLInputElement>(null);
   const filtered = items.filter((item) => item.name.toLowerCase().includes(query.trim().toLowerCase()));
 
   const groups = MENU_CATEGORIES.map((category) => ({
@@ -31,13 +33,30 @@ export default function MenuBrowser({ items }: { items: MenuItem[] }) {
       <div className="sticky top-24 z-10 mt-6 bg-surface py-3 min-[560px]:top-[3.75rem]">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h1 className="text-3xl">Menu</h1>
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search the menu"
-            aria-label="Search the menu"
-            className="w-full rounded-lg border border-brand-200 bg-white px-4 py-2 text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 sm:max-w-sm"
-          />
+          <div className="relative w-full sm:max-w-sm">
+            <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-brand-600" />
+            <input
+              ref={searchRef}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search the menu"
+              aria-label="Search the menu"
+              className="w-full rounded-lg border border-brand-200 bg-white py-2 pl-10 pr-10 text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+            />
+            {query && (
+              <button
+                type="button"
+                aria-label="Clear search"
+                className="absolute right-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-brand-700 hover:bg-brand-100"
+                onClick={() => {
+                  setQuery("");
+                  searchRef.current?.focus();
+                }}
+              >
+                <CloseIcon className="h-4 w-4" />
+              </button>
+            )}
+          </div>
         </div>
       </div>
 

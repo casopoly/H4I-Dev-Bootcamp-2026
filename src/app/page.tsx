@@ -14,8 +14,12 @@ export default function Home() {
         className="object-cover object-[70%_center] md:object-center"
       />
       <Navbar overlay />
-      <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6 text-center text-brand-950">
-        <h1 className="text-7xl md:text-8xl lg:text-9xl">Welcome</h1>
+      <div className="relative z-10 flex h-full flex-col items-center justify-center gap-10 text-center text-brand-950">
+        {/* One heading in two lines: a small greeting, then the shop name as the big text */}
+        <h1 className="flex flex-col items-center gap-1 md:gap-2">
+          <span className="font-sans text-3xl font-semibold md:text-5xl lg:text-6xl">Welcome to</span>
+          <span className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl">SLO Drip</span>
+        </h1>
         <Button href="/menu" variant="dark" size="lg">
           Menu
         </Button>

@@ -13,14 +13,10 @@ export default function Contact() {
       <Container className="pb-16">
         <PageHeader title="Contact us" subtitle="Questions, feedback or just saying hi? Send us a note." />
 
-        <section aria-labelledby="send-message" className="mx-auto mb-12 w-full max-w-xl">
-          <Card className="p-6">
-            <h2 id="send-message" className="text-2xl font-semibold">
-              Send us a message
-            </h2>
-            <div className="mt-4">
-              <ContactForm type="contact" />
-            </div>
+        {/* Full width but short (name and email side by side, a 3-row message, no heading under the page title), so the shops below stay near the top */}
+        <section aria-label="Send us a message" className="mb-10 w-full">
+          <Card className="p-5">
+            <ContactForm type="contact" />
           </Card>
         </section>
 

@@ -52,33 +52,35 @@ export default function ContactForm({ type, subject, initialMessage = "", onSent
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-4">
-      <div>
-        <label htmlFor="contact-name" className="font-medium">
-          Name
-        </label>
-        <input
-          id="contact-name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className={inputStyles}
-        />
-        {errors.name && <p className="mt-1 text-sm text-red-700">{errors.name}</p>}
-      </div>
+    <form onSubmit={handleSubmit} noValidate className="space-y-3">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div>
+          <label htmlFor="contact-name" className="font-medium">
+            Name
+          </label>
+          <input
+            id="contact-name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={inputStyles}
+          />
+          {errors.name && <p className="mt-1 text-sm text-red-700">{errors.name}</p>}
+        </div>
 
-      <div>
-        <label htmlFor="contact-email" className="font-medium">
-          Email
-        </label>
-        <input
-          id="contact-email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={inputStyles}
-        />
-        {errors.email && <p className="mt-1 text-sm text-red-700">{errors.email}</p>}
+        <div>
+          <label htmlFor="contact-email" className="font-medium">
+            Email
+          </label>
+          <input
+            id="contact-email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={inputStyles}
+          />
+          {errors.email && <p className="mt-1 text-sm text-red-700">{errors.email}</p>}
+        </div>
       </div>
 
       <div>
@@ -87,7 +89,7 @@ export default function ContactForm({ type, subject, initialMessage = "", onSent
         </label>
         <textarea
           id="contact-message"
-          rows={5}
+          rows={3}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className={inputStyles}
@@ -95,13 +97,15 @@ export default function ContactForm({ type, subject, initialMessage = "", onSent
         {errors.message && <p className="mt-1 text-sm text-red-700">{errors.message}</p>}
       </div>
 
-      <Button type="submit" disabled={status === "sending"}>
-        {status === "sending" ? "Sending..." : "Send message"}
-      </Button>
-
-      <div aria-live="polite">
-        {status === "success" && <p className="text-brand-800">Thank you! Your message was sent.</p>}
-        {status === "error" && <p className="text-red-700">{serverError}</p>}
+      {/* The result message sits on the left and the Send button at the bottom right */}
+      <div className="flex items-center justify-between gap-4">
+        <div aria-live="polite">
+          {status === "success" && <p className="text-brand-800">Thank you! Your message was sent.</p>}
+          {status === "error" && <p className="text-red-700">{serverError}</p>}
+        </div>
+        <Button type="submit" disabled={status === "sending"} className="shrink-0">
+          {status === "sending" ? "Sending..." : "Send message"}
+        </Button>
       </div>
     </form>
   );
