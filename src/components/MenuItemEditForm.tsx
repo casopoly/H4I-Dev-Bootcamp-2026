@@ -208,7 +208,7 @@ export default function MenuItemEditForm({ item }: { item?: MenuItem }) {
                   id={`price-${s}`}
                   type="number"
                   step="0.01"
-                  min="0"
+                  min="0.01"
                   className={fieldClass}
                   value={prices[s]}
                   aria-invalid={errors.sizes ? true : undefined}
