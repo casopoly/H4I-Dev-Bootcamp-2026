@@ -27,7 +27,7 @@ for (const item of seed) {
   names.add(item.name);
   if (!fs.existsSync(path.join(root, "public", item.image)))
     problems.push(`${item.name}: missing file public${item.image}`);
-  if (!["Hot Drinks", "Cold Drinks", "Pastries"].includes(item.category)) problems.push(`${item.name}: bad category`);
+  if (!["Latte", "Tea", "Coffee", "Others", "Pastries"].includes(item.category)) problems.push(`${item.name}: bad category`);
   const sizes = item.sizes.map((s) => s.size);
   if (sizes.length < 1 || sizes.length > 3 || new Set(sizes).size !== sizes.length)
     problems.push(`${item.name}: bad sizes`);

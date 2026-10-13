@@ -1,7 +1,7 @@
 [
   {
     "name": "Espresso",
-    "category": "Hot Drinks",
+    "category": "Coffee",
     "description": "A short, bold shot pulled from our house blend, with a caramel finish.",
     "sizes": [
       {
@@ -21,7 +21,7 @@
   },
   {
     "name": "Americano",
-    "category": "Hot Drinks",
+    "category": "Coffee",
     "description": "Espresso topped with hot water for a smooth, full cup.",
     "sizes": [
       {
@@ -41,7 +41,7 @@
   },
   {
     "name": "Cappuccino",
-    "category": "Hot Drinks",
+    "category": "Latte",
     "description": "Equal parts espresso, steamed milk and thick, airy foam.",
     "sizes": [
       {
@@ -61,7 +61,7 @@
   },
   {
     "name": "Flat White",
-    "category": "Hot Drinks",
+    "category": "Latte",
     "description": "Velvety microfoam over a double shot of espresso.",
     "sizes": [
       {
@@ -81,7 +81,7 @@
   },
   {
     "name": "Caramel Macchiato",
-    "category": "Hot Drinks",
+    "category": "Latte",
     "description": "Vanilla, steamed milk and espresso, finished with a caramel drizzle.",
     "sizes": [
       {
@@ -101,7 +101,7 @@
   },
   {
     "name": "Honey Lavender Latte",
-    "category": "Hot Drinks",
+    "category": "Latte",
     "description": "Espresso and steamed milk lightly sweetened with local honey and lavender.",
     "sizes": [
       {
@@ -121,7 +121,7 @@
   },
   {
     "name": "Dark Chocolate Mocha",
-    "category": "Hot Drinks",
+    "category": "Latte",
     "description": "Espresso, steamed milk and rich dark chocolate, topped with whipped cream.",
     "sizes": [
       {
@@ -141,7 +141,7 @@
   },
   {
     "name": "Chai Latte",
-    "category": "Hot Drinks",
+    "category": "Tea",
     "description": "Black tea simmered with cinnamon, cardamom and ginger, with steamed milk.",
     "sizes": [
       {
@@ -161,7 +161,7 @@
   },
   {
     "name": "Pistachio Latte",
-    "category": "Hot Drinks",
+    "category": "Latte",
     "description": "Espresso and steamed milk with a nutty, creamy pistachio sauce.",
     "sizes": [
       {
@@ -181,7 +181,7 @@
   },
   {
     "name": "Pumpkin Spice Latte",
-    "category": "Hot Drinks",
+    "category": "Latte",
     "description": "Our fall favorite: pumpkin, cinnamon and nutmeg with espresso and milk.",
     "sizes": [
       {
@@ -201,7 +201,7 @@
   },
   {
     "name": "Matcha",
-    "category": "Hot Drinks",
+    "category": "Tea",
     "description": "Ceremonial-grade matcha whisked with steamed milk.",
     "sizes": [
       {
@@ -221,7 +221,7 @@
   },
   {
     "name": "Earl Grey Tea",
-    "category": "Hot Drinks",
+    "category": "Tea",
     "description": "Black tea scented with bergamot, steeped to order.",
     "sizes": [
       {
@@ -241,7 +241,7 @@
   },
   {
     "name": "London Fog",
-    "category": "Hot Drinks",
+    "category": "Tea",
     "description": "Earl Grey with steamed milk and a splash of vanilla.",
     "sizes": [
       {
@@ -261,7 +261,7 @@
   },
   {
     "name": "Maple Oat Latte",
-    "category": "Hot Drinks",
+    "category": "Latte",
     "description": "Espresso and steamed oat milk with a touch of real maple syrup.",
     "sizes": [
       {
@@ -281,7 +281,7 @@
   },
   {
     "name": "Hot Chocolate",
-    "category": "Hot Drinks",
+    "category": "Others",
     "description": "Steamed milk and melted chocolate, topped with whipped cream.",
     "sizes": [
       {
@@ -301,7 +301,7 @@
   },
   {
     "name": "Cold Brew",
-    "category": "Cold Drinks",
+    "category": "Coffee",
     "description": "Coffee steeped slowly for 18 hours, smooth and low in acid.",
     "sizes": [
       {
@@ -321,7 +321,7 @@
   },
   {
     "name": "Nitro Cold Brew",
-    "category": "Cold Drinks",
+    "category": "Coffee",
     "description": "Cold brew infused with nitrogen for a creamy, cascading pour.",
     "sizes": [
       {
@@ -341,7 +341,7 @@
   },
   {
     "name": "Sweet Cream Cold Brew",
-    "category": "Cold Drinks",
+    "category": "Coffee",
     "description": "Cold brew finished with a float of vanilla sweet cream.",
     "sizes": [
       {
@@ -361,7 +361,7 @@
   },
   {
     "name": "Iced Vanilla Latte",
-    "category": "Cold Drinks",
+    "category": "Latte",
     "description": "Espresso, cold milk and vanilla over ice.",
     "sizes": [
       {
@@ -381,7 +381,7 @@
   },
   {
     "name": "Iced Mocha",
-    "category": "Cold Drinks",
+    "category": "Latte",
     "description": "Espresso, chocolate and cold milk over ice.",
     "sizes": [
       {
@@ -401,7 +401,7 @@
   },
   {
     "name": "Iced Americano",
-    "category": "Cold Drinks",
+    "category": "Coffee",
     "description": "Espresso poured over cold water and ice.",
     "sizes": [
       {
@@ -421,7 +421,7 @@
   },
   {
     "name": "Iced Chai Latte",
-    "category": "Cold Drinks",
+    "category": "Tea",
     "description": "Spiced chai and cold milk served over ice.",
     "sizes": [
       {
@@ -441,7 +441,7 @@
   },
   {
     "name": "Iced Matcha Latte",
-    "category": "Cold Drinks",
+    "category": "Tea",
     "description": "Matcha and cold milk shaken over ice.",
     "sizes": [
       {
@@ -461,7 +461,7 @@
   },
   {
     "name": "Peach Green Tea",
-    "category": "Cold Drinks",
+    "category": "Tea",
     "description": "Iced green tea brewed fresh and lightly sweetened with peach.",
     "sizes": [
       {
@@ -481,7 +481,7 @@
   },
   {
     "name": "Strawberry Lemonade",
-    "category": "Cold Drinks",
+    "category": "Others",
     "description": "Fresh-squeezed lemonade blended with strawberries.",
     "sizes": [
       {
@@ -501,7 +501,7 @@
   },
   {
     "name": "Mocha Frappe",
-    "category": "Cold Drinks",
+    "category": "Others",
     "description": "Blended espresso, chocolate and ice, topped with whipped cream.",
     "sizes": [
       {
@@ -521,7 +521,7 @@
   },
   {
     "name": "Berry Smoothie",
-    "category": "Cold Drinks",
+    "category": "Others",
     "description": "Strawberries, blueberries and banana blended with yogurt.",
     "sizes": [
       {
@@ -541,7 +541,7 @@
   },
   {
     "name": "Mango Smoothie",
-    "category": "Cold Drinks",
+    "category": "Others",
     "description": "Ripe mango and pineapple blended with orange juice.",
     "sizes": [
       {
@@ -561,7 +561,7 @@
   },
   {
     "name": "Strawberry Acai Refresher",
-    "category": "Cold Drinks",
+    "category": "Others",
     "description": "Sparkling strawberry and acai shaken with lemon over ice.",
     "sizes": [
       {
@@ -581,7 +581,7 @@
   },
   {
     "name": "Mango Dragonfruit Refresher",
-    "category": "Cold Drinks",
+    "category": "Others",
     "description": "Tropical mango and dragonfruit shaken with coconut water over ice.",
     "sizes": [
       {
