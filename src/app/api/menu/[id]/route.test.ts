@@ -13,7 +13,7 @@ const ID = "6702f1c2a1b2c3d4e5f60718";
 const savedItem = {
   _id: { toString: () => ID },
   name: "Latte",
-  category: "Hot Drinks",
+  category: "Latte",
   sizes: [{ size: "M", price: 5.25 }],
   description: "Espresso with steamed milk.",
   image: "/images/menu/drinks/latte.jpg",

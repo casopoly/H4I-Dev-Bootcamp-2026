@@ -4,7 +4,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_1",
     name: "Iced Matcha Latte",
-    category: "Cold Drinks",
+    category: "Tea",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -16,7 +16,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_2",
     name: "Cold Brew",
-    category: "Cold Drinks",
+    category: "Coffee",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -28,7 +28,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_3",
     name: "Iced Vanilla Latte",
-    category: "Cold Drinks",
+    category: "Latte",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -40,7 +40,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_5",
     name: "Cappuccino",
-    category: "Hot Drinks",
+    category: "Latte",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -52,7 +52,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_6",
     name: "Dark Chocolate Mocha",
-    category: "Hot Drinks",
+    category: "Latte",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -64,7 +64,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_7",
     name: "Pistachio Latte",
-    category: "Hot Drinks",
+    category: "Latte",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -76,7 +76,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_8",
     name: "Pumpkin Spice Latte",
-    category: "Hot Drinks",
+    category: "Latte",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -88,7 +88,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_9",
     name: "Chai Latte",
-    category: "Hot Drinks",
+    category: "Tea",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -100,7 +100,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_10",
     name: "Earl Grey Tea",
-    category: "Hot Drinks",
+    category: "Tea",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },
@@ -112,7 +112,7 @@ export const DUMMY_MENU: MenuItem[] = [
   {
     _id: "item_14",
     name: "Matcha",
-    category: "Hot Drinks",
+    category: "Tea",
     sizes: [
       { size: "S", price: 4.95 },
       { size: "M", price: 5.25 },

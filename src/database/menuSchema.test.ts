@@ -3,7 +3,7 @@ import MenuItem from "@/database/menuSchema";
 import { MENU_SIZES } from "@/constants/menu";
 
 // validateSync checks the schema rules without a database
-const base = { name: "Latte", category: "Hot Drinks", description: "Nice", image: "/images/menu/x.jpg" };
+const base = { name: "Latte", category: "Latte", description: "Nice", image: "/images/menu/x.jpg" };
 const sizes = (n: number) => Array.from({ length: n }, (_, i) => ({ size: MENU_SIZES[i % 3], price: 5 + i }));
 const validate = (fields: Record<string, unknown>) => new MenuItem({ ...base, ...fields }).validateSync();
 

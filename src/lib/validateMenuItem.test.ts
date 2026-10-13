@@ -3,7 +3,7 @@ import { validateMenuItem } from "@/lib/validateMenuItem";
 
 const validItem = {
   name: "Latte",
-  category: "Hot Drinks",
+  category: "Latte",
   sizes: [
     { size: "S", price: 4.95 },
     { size: "M", price: 5.25 },

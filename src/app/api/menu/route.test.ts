@@ -19,7 +19,7 @@ const post = (body: string) => POST(new NextRequest("http://localhost/api/menu",
 
 const validItem = {
   name: "Honey Latte",
-  category: "Hot Drinks",
+  category: "Latte",
   sizes: [
     { size: "S", price: 4.5 },
     { size: "M", price: 5 },
